@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Devinor&#39;s Blog</title>
+  
+  <subtitle>Diversity  is  essential  to  happiness</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2018-10-15T15:00:15.300Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>devinor Chen</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>INTRO</title>
+    <link href="http://yoursite.com/2018/10/13/INTRO/"/>
+    <id>http://yoursite.com/2018/10/13/INTRO/</id>
+    <published>2018-10-13T10:48:24.000Z</published>
+    <updated>2018-10-15T15:00:15.300Z</updated>
+    
+    <content type="html"><![CDATA[<p>&nbsp; 业精于勤，荒于嬉；行成于思，毁于随</p><p>&nbsp; 共勉!</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&amp;nbsp; 业精于勤，荒于嬉；行成于思，毁于随&lt;/p&gt;
+&lt;p&gt;&amp;nbsp; 共勉!&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+      <category term="INTRO" scheme="http://yoursite.com/tags/INTRO/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>新文章</title>
+    <link href="http://yoursite.com/2018/10/12/%E6%96%B0%E6%96%87%E7%AB%A0/"/>
+    <id>http://yoursite.com/2018/10/12/新文章/</id>
+    <published>2018-10-12T00:38:55.000Z</published>
+    <updated>2018-10-14T13:29:02.928Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><p>分享啦</p><p>美国股市周五震荡收高，科技股领涨。JP摩根大通等公布财报后，金融股受到关注。</p><p>道琼斯指数涨287.16点，或1.15%，报25339.99点；标普500指数涨38.76点，或1.42%，报2767.13点；纳指涨167.83点，或2.29%，报7496.89点。</p><p>道指周五一度上涨超过410点，最高上涨至25467.55点，随后涨幅收窄，午后一度转跌，此后再度上扬并收高。<br>道指本周累计下跌4.2%，标普500指数累计下跌4.1%，纳指下跌3.7%</p><p>美国股市周五震荡收高，科技股领涨。JP摩根大通等公布财报后，金融股受到关注。</p><p>道琼斯指数涨287.16点，或1.15%，报25339.99点；标普500指数涨38.76点，或1.42%，报2767.13点；纳指涨167.83点，或2.29%，报7496.89点。</p><p>道指周五一度上涨超过410点，最高上涨至25467.55点，随后涨幅收窄，午后一度转跌，此后再度上扬并收高。<br><a id="more"></a></p><p>道指本周累计下跌4.2%，标普500指数累计下跌4.1%，纳指下跌3.7%美国股市周五震荡收高，科技股领涨。JP摩根大通等公布财报后，金融股受到关注。</p><p>道琼斯指数涨287.16点，或1.15%，报25339.99点；标普500指数涨38.76点，或1.42%，报2767.13点；纳指涨167.83点，或2.29%，报7496.89点。</p><p>道指周五一度上涨超过410点，最高上涨至25467.55点，随后涨幅收窄，午后一度转跌，此后再度上扬并收高。</p><p>道指本周累计下跌4.2%，标普500指数累计下跌4.1%，纳指下跌3.7%</p><p>美国股市周五震荡收高，科技股领涨。JP摩根大通等公布财报后，金融股受到关注。</p><p>道琼斯指数涨287.16点，或1.15%，报25339.99点；标普500指数涨38.76点，或1.42%，报2767.13点；纳指涨167.83点，或2.29%，报7496.89点。</p><p>道指周五一度上涨超过410点，最高上涨至25467.55点，随后涨幅收窄，午后一度转跌，此后再度上扬并收高。</p><p>道指本周累计下跌4.2%，标普500指数累计下跌4.1%，纳指下跌3.7%</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;一级标题&quot;&gt;&lt;a href=&quot;#一级标题&quot; class=&quot;headerlink&quot; title=&quot;一级标题&quot;&gt;&lt;/a&gt;一级标题&lt;/h1&gt;&lt;h2 id=&quot;二级标题&quot;&gt;&lt;a href=&quot;#二级标题&quot; class=&quot;headerlink&quot; title=&quot;二级标题&quot;&gt;&lt;/a&gt;二级标题&lt;/h2&gt;&lt;p&gt;分享啦&lt;/p&gt;
+&lt;p&gt;美国股市周五震荡收高，科技股领涨。JP摩根大通等公布财报后，金融股受到关注。&lt;/p&gt;
+&lt;p&gt;道琼斯指数涨287.16点，或1.15%，报25339.99点；标普500指数涨38.76点，或1.42%，报2767.13点；纳指涨167.83点，或2.29%，报7496.89点。&lt;/p&gt;
+&lt;p&gt;道指周五一度上涨超过410点，最高上涨至25467.55点，随后涨幅收窄，午后一度转跌，此后再度上扬并收高。&lt;br&gt;道指本周累计下跌4.2%，标普500指数累计下跌4.1%，纳指下跌3.7%&lt;/p&gt;
+&lt;p&gt;美国股市周五震荡收高，科技股领涨。JP摩根大通等公布财报后，金融股受到关注。&lt;/p&gt;
+&lt;p&gt;道琼斯指数涨287.16点，或1.15%，报25339.99点；标普500指数涨38.76点，或1.42%，报2767.13点；纳指涨167.83点，或2.29%，报7496.89点。&lt;/p&gt;
+&lt;p&gt;道指周五一度上涨超过410点，最高上涨至25467.55点，随后涨幅收窄，午后一度转跌，此后再度上扬并收高。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="前端" scheme="http://yoursite.com/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="标签" scheme="http://yoursite.com/tags/%E6%A0%87%E7%AD%BE/"/>
+    
+  </entry>
+  
+</feed>
