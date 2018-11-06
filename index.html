@@ -366,7 +366,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/07/网络通讯2/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/07/网络通信2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="devinor Chen">
@@ -385,8 +385,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/07/网络通讯2/" itemprop="url">
-                  未命名
+                <a class="post-title-link" href="/2018/11/07/网络通信2/" itemprop="url">
+                  网络通信2
                 </a>
               
             
@@ -412,7 +412,7 @@
                 
               
 
-              <time title="创建时间：2018-11-07 00:00:00" itemprop="dateCreated datePublished" datetime="2018-11-07T00:00:00+08:00">2018-11-07</time>
+              <time title="创建时间：2018-11-07 00:25:56" itemprop="dateCreated datePublished" datetime="2018-11-07T00:25:56+08:00">2018-11-07</time>
             
 
             
@@ -427,8 +427,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/11/07/网络通讯2/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/11/07/网络通讯2/" itemprop="commentCount"></span>
+                <a href="/2018/11/07/网络通信2/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/11/07/网络通信2/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -458,13 +458,7 @@
       
         
           
-            <hr>
-<p>title: 网络通讯(2)<br>date: 2018-11-07 00:20:23<br>tags:</p>
-<ul>
-<li>网络通信协议<br>categories:<br>网络通信协议</li>
-</ul>
-<hr>
-<p>&emsp;&emsp;之前说的是以太网协议,这里我们看网络层和传输层.<br>&emsp;&emsp;我们知道以太网是依靠MAC地址来发送数据的,理论上单单依靠MAC地址,上海的网卡就可以找到在北京的网卡,这在理论上是可以实现的.</p>
+            <p>&emsp;&emsp;之前说的是以太网协议,这里我们看网络层和传输层.<br>&emsp;&emsp;我们知道以太网是依靠MAC地址来发送数据的,理论上单单依靠MAC地址,上海的网卡就可以找到在北京的网卡,这在理论上是可以实现的.</p>
 <p>&emsp;&emsp;但是它有一个严重的缺点,以太网采用广播的方式去发送一个数据包,如果每个程序员人手一个包的话,这样不仅效率低,而且发送者和接受者局限在子网当中.</p>
 <p>&emsp;&emsp;也就是说,如果两个主机不在同一子网当中,广播是没有办法传输的.这种设计是比较合理的.否则互联网上每一台计算机都要收到这个包,这将是一场灾难.</p>
 <p>&emsp;&emsp;互联网是由无数个子网组成的巨型网络.如果北京和上海在同一个子网络中,这几乎是不可能的.所以我们需要寻找以这个方法来区分哪些MAC地址是同一子网络的,哪些不是.<br>&emsp;&emsp;如果是同一子网的话,就使用广播的方式去发送数据,否则就选择路由的方式发送.<br>&emsp;&emsp;而路由的意思是如何向不同的子网分发数据包,这个是一个非常庞大的主题.我们这里不展开说.<br>&emsp;&emsp;非常遗憾的是MAC地址本身是不能做到这一点的,MAC地址只和厂商有关,和网络环境无关,这就导致了网络层的诞生.<br><br></p>
