@@ -13,7 +13,7 @@
   <entry>
     <title><![CDATA[在终端中写文件]]></title>
     <url>%2F2018%2F10%2F26%2Flinux%E5%85%A5%E9%97%A8%E6%93%8D%E4%BD%9C2%2F</url>
-    <content type="text"><![CDATA[在终端中写文件 sublime text vim 不要乱按键盘 新建 vim helloVIM.txt 在普通模式下 ,输入冒号后,然后便可以输入字母并回车,来执行保存,退出w:保存 q是退出 在普通模式下 按下 i 进入插入模式esc按键是退出插入模式 上下左右键可以移动光标 没有上下左右键 hjkl 连续摁下两次D 即dd 删除行 shell文件shell想要变成可执行文件的话 第一行一定是#!/bin/sh先去一个名字 echo_ex.sh 后缀名一定是sh 代表是shell文件代码:#!/bin/shecho &quot;i am so smart&quot;echo &quot;you are so smart too&quot;echo &quot;i love you &quot;echo &quot;i like your idea&quot;echo &quot;i like studying and researching&quot; 然后退出并且保存 但是还是不能执行 信息需要把他变成可执行模式 sudo chmod 777 echo_ex.sh 然后再输入./echo_ex.sh 编写shell 文件说法]]></content>
+    <content type="text"><![CDATA[在终端中写文件 sublime text vim 不要乱按键盘 新建 vim helloVIM.txt 在普通模式下 ,输入冒号后,然后便可以输入字母并回车,来执行保存,退出w:保存 q是退出在普通模式下 按下 i 进入插入模式esc按键是退出插入模式 上下左右键可以移动光标 没有上下左右键 hjkl 连续摁下两次D 即dd 删除行 shell文件shell想要变成可执行文件的话 第一行一定是#!/bin/sh先去一个名字 echo_ex.sh 后缀名一定是sh 代表是shell文件代码:#!/bin/shecho &quot;i am so smart&quot;echo &quot;you are so smart too&quot;echo &quot;i love you &quot;echo &quot;i like your idea&quot;echo &quot;i like studying and researching&quot; 然后退出并且保存 但是还是不能执行 信息需要把他变成可执行模式 sudo chmod 777 echo_ex.sh 然后再输入./echo_ex.sh 编写shell 文件说法]]></content>
   </entry>
   <entry>
     <title><![CDATA[网络通讯协议(1)]]></title>
@@ -29,7 +29,7 @@
   <entry>
     <title><![CDATA[linux入门操作(1)]]></title>
     <url>%2F2018%2F10%2F25%2Flinux%E5%85%A5%E9%97%A8%E6%93%8D%E4%BD%9C%2F</url>
-    <content type="text"><![CDATA[使用环境:ubuntu 16.04 LTS 终端打开终端的方式有两种直接寻找程序打开使用快捷键 ctrl +alt +T &emsp;&emsp;进入终端后,如果是默认设置的话,则会进入该用户的当前的家用户目录中&emsp;&emsp;在终端中输入ls 就可以看到家目录下所有的内容&emsp;&emsp;当输入ls -l&emsp;&emsp;就会显示当前目录下所有的内容的详细列表&emsp;&emsp;这里的-l 是附加命令,是针对ls 这个命令进行的更多功能设置 当使用 ls 指令后我们看到 家目录下有一个downloads文件夹 我们进入这个文件夹,输入cd downloads/ 使用ls 指令会看到ls 至指令下 downloads 文件夹下有一个Ubuntu1.pdf 下面是几个基础知识,首先linux的根目录是”/ “ cd / 就可以进入到根目录当前用户家目录则用~ 代替cd ~ 就可以进入家目录文件夹 一般来说,以根目录”/“ 开始的路径 就被称为是绝对路径.而当前用户的家目录的绝对路径则一般为/home/用户名使用cd /home /用户名 和使用cd ~ 是一样的意思 使用tab 键可以自动补全需要的文件名 使用方法是输入文件夹名字的前几个字母,点击TAB键 双点代表上一级目录,单点代表当前目录cd .. 是返回上级目录./是当前科执行程序 新建文件夹 mkdirmkdir testcd test/ 删除文件夹 rmdirrmdir 文件夹名这个指令要求这个文件夹必须是空的才能删除 删除文件(夹) rmrm 文件名 删除文件rm -rf 文件夹名删除目标文件夹及其下的所有文件 在根目录下 mkdir 一般用户是不能使用的必须是root 用户才可以使用sudo mkdir 才能实现新建 复制 cp 源文件路径 目标路径cp -rf 源文件路径 目标文件夹路径 移动 mvmv 文件名 移动路径mv不需要添加-rf命令 这个指令可以用来修改文件名mv 文件名]]></content>
+    <content type="text"><![CDATA[使用环境:ubuntu 16.04 LTS 终端打开终端的方式有两种直接寻找程序打开使用快捷键 ctrl +alt +T &emsp;&emsp;进入终端后,如果是默认设置的话,则会进入该用户的当前的家用户目录中&emsp;&emsp;在终端中输入ls 就可以看到家目录下所有的内容&emsp;&emsp;当输入ls -l&emsp;&emsp;就会显示当前目录下所有的内容的详细列表&emsp;&emsp;这里的-l 是附加命令,是针对ls 这个命令进行的更多功能设置 当使用 ls 指令后我们看到 家目录下有一个downloads文件夹 我们进入这个文件夹,输入cd downloads/ 使用ls 指令会看到ls 至指令下 downloads 文件夹下有一个Ubuntu1.pdf 下面是几个基础知识,首先linux的根目录是”/ “cd / 就可以进入到根目录当前用户家目录则用~ 代替cd ~ 就可以进入家目录文件夹 一般来说,以根目录”/“ 开始的路径 就被称为是绝对路径.而当前用户的家目录的绝对路径则一般为/home/用户名使用cd /home /用户名 和使用cd ~ 是一样的意思 使用tab 键可以自动补全需要的文件名 使用方法是输入文件夹名字的前几个字母,点击TAB键 双点代表上一级目录,单点代表当前目录cd .. 是返回上级目录./是当前科执行程序 新建文件夹 mkdirmkdir testcd test/ 删除文件夹 rmdirrmdir 文件夹名这个指令要求这个文件夹必须是空的才能删除 删除文件(夹) rmrm 文件名 删除文件rm -rf 文件夹名删除目标文件夹及其下的所有文件 在根目录下 mkdir 一般用户是不能使用的必须是root 用户才可以使用sudo mkdir 才能实现新建 复制 cp 源文件路径 目标路径cp -rf 源文件路径 目标文件夹路径 移动 mvmv 文件名 移动路径mv不需要添加-rf命令 这个指令可以用来修改文件名mv 文件名]]></content>
   </entry>
   <entry>
     <title><![CDATA[CURRENT AND VOLTAGE]]></title>
