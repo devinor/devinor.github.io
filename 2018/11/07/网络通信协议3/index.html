@@ -143,16 +143,16 @@
   <meta name="description" content="应用层&amp;emsp;&amp;emsp;由于互联网是开放的架构, 数据来源是五花八门.所以事先必须规定一些格式,否则根本没有办法解读.&amp;emsp;&amp;emsp;现在讲的应用层就是规定应用程序的数据格式.&amp;emsp;&amp;emsp;举个例子, TCP协议可以为各式各样的程序传递数据, 比如EMAIL,www,FTP等等, 那么必须有不同的协议规定电子邮件, 网页, FTP的数据格式.这些应用程序的协议就构成了一个应">
 <meta name="keywords" content="Linux,自动化专业,给搜索引擎看的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="网络通信协议3">
+<meta property="og:title" content="网络通信协议(3)">
 <meta property="og:url" content="http://yoursite.com/2018/11/07/网络通信协议3/index.html">
 <meta property="og:site_name" content="Devinor&#39;s Blog">
 <meta property="og:description" content="应用层&amp;emsp;&amp;emsp;由于互联网是开放的架构, 数据来源是五花八门.所以事先必须规定一些格式,否则根本没有办法解读.&amp;emsp;&amp;emsp;现在讲的应用层就是规定应用程序的数据格式.&amp;emsp;&amp;emsp;举个例子, TCP协议可以为各式各样的程序传递数据, 比如EMAIL,www,FTP等等, 那么必须有不同的协议规定电子邮件, 网页, FTP的数据格式.这些应用程序的协议就构成了一个应">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://i.imgur.com/46b9CAd.png">
 <meta property="og:image" content="https://i.imgur.com/sMXDp9F.png">
-<meta property="og:updated_time" content="2018-11-07T04:40:40.439Z">
+<meta property="og:updated_time" content="2018-11-07T04:44:37.072Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="网络通信协议3">
+<meta name="twitter:title" content="网络通信协议(3)">
 <meta name="twitter:description" content="应用层&amp;emsp;&amp;emsp;由于互联网是开放的架构, 数据来源是五花八门.所以事先必须规定一些格式,否则根本没有办法解读.&amp;emsp;&amp;emsp;现在讲的应用层就是规定应用程序的数据格式.&amp;emsp;&amp;emsp;举个例子, TCP协议可以为各式各样的程序传递数据, 比如EMAIL,www,FTP等等, 那么必须有不同的协议规定电子邮件, 网页, FTP的数据格式.这些应用程序的协议就构成了一个应">
 <meta name="twitter:image" content="https://i.imgur.com/46b9CAd.png">
 
@@ -173,7 +173,7 @@
   };
 </script>
 
-  <title>网络通信协议3 | Devinor's Blog</title>
+  <title>网络通信协议(3) | Devinor's Blog</title>
   
 
 
@@ -386,7 +386,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">网络通信协议3
+          <h1 class="post-title" itemprop="name headline">网络通信协议(3)
               
             
           </h1>
@@ -464,8 +464,7 @@
 
       
         <p>应用层<br>&emsp;&emsp;由于互联网是开放的架构, 数据来源是五花八门.所以事先必须规定一些格式,否则根本没有办法解读.<br>&emsp;&emsp;现在讲的应用层就是规定应用程序的数据格式.<br>&emsp;&emsp;举个例子, TCP协议可以为各式各样的程序传递数据, 比如EMAIL,www,FTP等等, 那么必须有不同的协议规定电子邮件, 网页, FTP的数据格式.这些应用程序的协议就构成了一个应用层, 这就是我们说的五层协议里面最高的一层, 是面对用户的.</p>
-<p>他的数据就放在TCP协议的data部分,所以以太网数据包就会变成以下的样子.<br>Ethernet head | IP head |TCP head| –Application Layer data–<br>–|–|–|–|<br><br><br><br><br><br></p>
-<p><img src="https://i.imgur.com/46b9CAd.png" alt="Imgur"><br><a id="more"></a><br><br><br>&emsp;&emsp;  在这幅图中, 有4台主机.1和2处于一个子网,3和4处于同一子网.<br>&emsp; &emsp; 如果1给4发送数据包.然后4告诉1, 收到了数据包.这样就可以实现两台计算机之间的通讯.<br>&emsp; &emsp; 而发送这个数据包就必须需要两个地址. MAC地址和IP地址, 有了这两个地址之后, 数据包才能够准确的送到接受者的手中.<br>&emsp; &emsp; 但是MAC地址是有局限的, 如果两台主机不在同一子网, 就没有办法知道彼此的MAC地址.<br><br></p>
+<p>他的数据就放在TCP协议的data部分,所以以太网数据包就会变成以下的样子.<br>Ethernet head | IP head |TCP head| –Application Layer data–<br>–|–|–|–|<br><br><br><br><br><img src="https://i.imgur.com/46b9CAd.png" alt="Imgur"><br><a id="more"></a><br>&emsp;&emsp;  在这幅图中, 有4台主机.1和2处于一个子网,3和4处于同一子网.<br>&emsp; &emsp; 如果1给4发送数据包.然后4告诉1, 收到了数据包.这样就可以实现两台计算机之间的通讯.<br>&emsp; &emsp; 而发送这个数据包就必须需要两个地址. MAC地址和IP地址, 有了这两个地址之后, 数据包才能够准确的送到接受者的手中.<br>&emsp; &emsp; 但是MAC地址是有局限的, 如果两台主机不在同一子网, 就没有办法知道彼此的MAC地址.<br><br></p>
 <p>&emsp;&emsp;  所以出现了网关(gateway), 它实现转发的功能. 主机1给主机4发送数据包.他先判断主机4是否处于同一子网.如果不是, 主机1把数据包发给他的网关(A).<br>&emsp; &emsp; 这网关通过路由协议, 发现了主机4处于另一个网关内(B). A网关把数据发送给了B网关, B网关又把数据转发给了主机4.</p>
 <p>&emsp; &emsp; 主机1想要把数据发送给A网关, 需要知道A网关的MAC地址.<br>&emsp; &emsp; 所以数据包的目标地址实际上分为两种情况.<br>场景|数据包地址<br>–|–<br>目标主机同一子网|对方的MAC地址,对方的IP地址<br>目标主机非同一子网|网关的MAC地址,对方的IP地址<br><br></p>
 <p>我们在windows中连接网络,可能会看到静态IP和动态IP的选项<br><img src="https://i.imgur.com/sMXDp9F.png" alt="Imgur"></p>
@@ -588,8 +587,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/07/网络通信2/" rel="next" title="网络通信2">
-                <i class="fa fa-chevron-left"></i> 网络通信2
+              <a href="/2018/11/07/网络通信2/" rel="next" title="网络通信(2)">
+                <i class="fa fa-chevron-left"></i> 网络通信(2)
               </a>
             
           </div>
@@ -664,7 +663,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
