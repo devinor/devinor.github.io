@@ -475,18 +475,15 @@
 
       
         
-          
-            <p>catkin   是用来编译ros程序的<br>catkin 工作空间就是一个文件夹<br>组织和管理功能包的文件<br>用catkin工具编译</p>
-<p>各种ros代码放在catkin workpace 文件夹中<br>如何:创建一个catkin的文件空间<br>指令:catkin_make   帮助我们初始化工作空间</p>
-<p>$mkdir ~p ~/catkin_ws/src<br>$cd ~/catkin_ws/<br>$catkin_make<br>其实catkin_make的主要功能是编译</p>
-<p>编译<br>$cd -/catkin_ws  #回到工作空间<br>$catkin_make<br>$source -/catkin_ws/devel/setup.bash</p>
-<p>#编译完成之后要source刷新环境</p>
-<p>注意:<br>catkin_make 之前一定要回到catkin workspace<br>catkin_make 之后一定要devel/setup.bash这句话是把刚刚编译的worksapce 刷新到环境里面</p>
-<p>catkin workspace 里的<br>src文件 package源代码<br> build文件夹  cmake&amp; catkin 缓存文件和中间文件<br>devel文件夹: 生成的目标文件  包括 1.头文件 2.动态链接库 3.静态链接库 4.可执行文件<br>bulid 和devel 初学者不用掌握</p>
-<p>注意::ros build 是旧的版本  看到资料直接忽略</p>
-<p>src里面到底有什么<br>src 里面有许多package<br>package 是catkin编译的基本单元<br>catkin的编译对象就是一个又一个package</p>
-
-          
+          <p>catkin   是用来编译ros程序的<br>catkin 工作空间就是一个文件夹<br>组织和管理功能包的文件<br>用catkin工具编译</p>
+<p>各种ros代码放在catkin workpace 文件夹中<br>如何:创建一个catkin的文件空间<br>指令:catkin_make   帮助我们初始化工作空间<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/11/07/ros系统catkin文件/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1567,6 +1564,175 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/14/无线充电/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="devinor Chen">
+      <meta itemprop="description" content="须知参差多态，乃是幸福的本源">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Devinor's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/14/无线充电/" itemprop="url">
+                  无线充电
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-05-14 10:46:50" itemprop="dateCreated datePublished" datetime="2018-05-14T10:46:50+08:00">2018-05-14</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/电力电子/" itemprop="url" rel="index"><span itemprop="name">电力电子</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/14/无线充电/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/05/14/无线充电/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><img src="https://i.imgur.com/tHyaexi.png" alt="Imgur"><br>首先交流电经过电能发送端的整流电路和逆变电路变成高频的交流电，然后传递给线圈，将能量传送到电能的接收端，最后电能的接收端再经过整流或逆变得到直流电或交流电供给负载使用</p>
+<p>#发射端<br><img src="https://i.imgur.com/qDB3Xck.png" alt="Imgur"><br>&emsp;&emsp;5V的直流电传递给给高频逆变电路，然后再传递给谐振网络，让系统频率变成 llOKHz至205KHz的高频交流电。高频率的交流电传递给后而的线圈，磁场会发生变化，手机系统能鼠的接收端线会感应到这种变化。反馈信号电路和控制器是对发射线圈电流的俭测.<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/05/14/无线充电/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/13/INTRO/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1746,7 +1912,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-count">9</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1769,7 +1935,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">4</span>
+                      
+                    
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1794,7 +1962,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">5</span>
+                      
+                    
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

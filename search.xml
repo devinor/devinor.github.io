@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[ros系统catkin文件]]></title>
     <url>%2F2018%2F11%2F07%2Fros%E7%B3%BB%E7%BB%9Fcatkin%E6%96%87%E4%BB%B6%2F</url>
-    <content type="text"><![CDATA[catkin 是用来编译ros程序的catkin 工作空间就是一个文件夹组织和管理功能包的文件用catkin工具编译 各种ros代码放在catkin workpace 文件夹中如何:创建一个catkin的文件空间指令:catkin_make 帮助我们初始化工作空间 $mkdir ~p ~/catkin_ws/src$cd ~/catkin_ws/$catkin_make其实catkin_make的主要功能是编译 编译$cd -/catkin_ws #回到工作空间$catkin_make$source -/catkin_ws/devel/setup.bash #编译完成之后要source刷新环境 注意:catkin_make 之前一定要回到catkin workspacecatkin_make 之后一定要devel/setup.bash这句话是把刚刚编译的worksapce 刷新到环境里面 catkin workspace 里的src文件 package源代码 build文件夹 cmake&amp; catkin 缓存文件和中间文件devel文件夹: 生成的目标文件 包括 1.头文件 2.动态链接库 3.静态链接库 4.可执行文件bulid 和devel 初学者不用掌握 注意::ros build 是旧的版本 看到资料直接忽略 src里面到底有什么src 里面有许多packagepackage 是catkin编译的基本单元catkin的编译对象就是一个又一个package]]></content>
+    <content type="text"><![CDATA[catkin 是用来编译ros程序的catkin 工作空间就是一个文件夹组织和管理功能包的文件用catkin工具编译 各种ros代码放在catkin workpace 文件夹中如何:创建一个catkin的文件空间指令:catkin_make 帮助我们初始化工作空间$mkdir ~p ~/catkin_ws/src$cd ~/catkin_ws/$catkin_make其实catkin_make的主要功能是编译 编译$cd -/catkin_ws #回到工作空间$catkin_make$source -/catkin_ws/devel/setup.bash #编译完成之后要source刷新环境 注意:catkin_make 之前一定要回到catkin workspacecatkin_make 之后一定要devel/setup.bash这句话是把刚刚编译的worksapce 刷新到环境里面 catkin workspace 里的src文件 package源代码 build文件夹 cmake&amp; catkin 缓存文件和中间文件devel文件夹: 生成的目标文件 包括 1.头文件 2.动态链接库 3.静态链接库 4.可执行文件bulid 和devel 初学者不用掌握 注意::ros build 是旧的版本 看到资料直接忽略 src里面到底有什么src 里面有许多packagepackage 是catkin编译的基本单元catkin的编译对象就是一个又一个package]]></content>
       <categories>
         <category>ROS</category>
       </categories>
@@ -75,6 +75,17 @@
       </categories>
       <tags>
         <tag>Electrical Professional English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[无线充电]]></title>
+    <url>%2F2018%2F05%2F14%2F%E6%97%A0%E7%BA%BF%E5%85%85%E7%94%B5%2F</url>
+    <content type="text"><![CDATA[首先交流电经过电能发送端的整流电路和逆变电路变成高频的交流电，然后传递给线圈，将能量传送到电能的接收端，最后电能的接收端再经过整流或逆变得到直流电或交流电供给负载使用 #发射端&emsp;&emsp;5V的直流电传递给给高频逆变电路，然后再传递给谐振网络，让系统频率变成 llOKHz至205KHz的高频交流电。高频率的交流电传递给后而的线圈，磁场会发生变化，手机系统能鼠的接收端线会感应到这种变化。反馈信号电路和控制器是对发射线圈电流的俭测.&emsp;&emsp;当系统进行工作时，如果电流出现大的波动，表示系统正在进行不正常的充电或者系统遭到了破坏，那么反馈信号电路就会将信息传递给控制器，然后做出相应的调节，一方而保护了系统，另一方而也让系统能够更加精确.高效的工作。控制器接收反馈信号电路的信号，然后判断该系统足否能够正常工作.并对当前线圈的电流值进行相应计算。频率的变化对系统非常重要，选择逆变电路的时候，要保证某一频率下，效率不会很低。从内部驱动的电路组成来看，大致可以分为全桥逆变电路。半桥逆变电路，单端式逆变电路。由上图可知，在全桥逆变的电路结构中4个开关管是一样的，通过控制这四 个管子的快速开通和关断来形成高频交流电，从而能够将电能传递给线圈的副边。工作原理为：当Q1和Q4导通时，另外两个管子是关断的，电流经过Q1后流过 线圈，然后经过Q4流回电源负极；同理，在下一时刻，Q2和Q3导通时，Q1和Q4是关断的，电流经过Q3后流过线圈，然后经Q2流回电源负极。其中二极管 作用为续流，这两个过程中流经线圈的电流方向相反，改变4个开关管的频率就可以改变交流线圈的电流频率.本电路实现软开关变得控制比较容易。缺点是开关管的控制比较复杂。不过转换效率高，功率大。所以应用广泛。 #接收端AC- DC整流变换电路将手机接 端线圈中高频率的交流电转换成直流电 ，此将转换成系统所需要的5 V直流电 ，然 后传递给负载 。反馈信号电路负责 检 测 AC- DC变 换 电 路 的 输 出 电 值 ，并传送给控制器 ，然 后 让 控 制 器 能 够 及时的了解到当前传输功率的大小，这样可以及时的 将误差信息传递到发射端。在这里，控制器是很重要的组成部分，它能够监视用电设备的充电状态 ，比如充电 是否完成，充电是否异常等。 前面分析得知，系统能量的输入端采用全桥逆变电路，然后经过耦合线圈将能量传递到输电到输出端。系统的主电路如下图所示。]]></content>
+      <categories>
+        <category>电力电子</category>
+      </categories>
+      <tags>
+        <tag>无线充电</tag>
       </tags>
   </entry>
   <entry>
