@@ -67,6 +67,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[linux C编程 一站式学习]]></title>
+    <url>%2F2018%2F09%2F10%2F%E5%B5%8C%E5%85%A5%E5%BC%8FC%2F</url>
+    <content type="text"><![CDATA[&emsp;&emsp;《linux C编程 一站式学习》&emsp;&emsp;再学一次C语言。&emsp;&emsp;从大学一年纪学习C语言。一直都是在windows平台下。 &emsp;&emsp;windows不用自己配置，所有操作都是界面化，win10之后连防火墙都不必要安装。 &emsp;&emsp;都是微软给惯坏了，哪怕我们日常随手接触的电脑，还是不了解系统底层的操作。对于普通的消费者而言，这没有什么，因为他们并不需要了解系统底层到底是怎么运作的，也不需要了解数据到底是怎么从一台电脑发送到另一台电脑的。&emsp;&emsp;但是对于需要对计算机和互联网有更加深入理解的朋友。学习好使用Linux会对我们有很大的提升。刚好之前购置了一台VPS主机，一直用作是V2ray的服务器了。最近给安装了Debian系统。ssh连接一下就可以愉快的做linux练习机了。 &emsp;&emsp;这就是我最近购置的关于linux下C语言的编程书籍。也可以看作是重新再学一次C语言了。&emsp;]]></content>
+      <categories>
+        <category>Linux C</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[linux入门操作(1)]]></title>
     <url>%2F2018%2F06%2F25%2Flinux%E5%85%A5%E9%97%A8%E6%93%8D%E4%BD%9C%2F</url>
     <content type="text"><![CDATA[使用环境:ubuntu 16.04 LTS 终端打开终端的方式有两种直接寻找程序打开使用快捷键 ctrl +alt +T &emsp;&emsp;进入终端后,如果是默认设置的话,则会进入该用户的当前的家用户目录中&emsp;&emsp;在终端中输入ls 就可以看到家目录下所有的内容&emsp;&emsp;当输入ls -l&emsp;&emsp;就会显示当前目录下所有的内容的详细列表&emsp;&emsp;这里的-l 是附加命令,是针对ls 这个命令进行的更多功能设置 当使用 ls 指令后我们看到 家目录下有一个downloads文件夹 我们进入这个文件夹,输入cd downloads/ 使用ls 指令会看到ls 至指令下 downloads 文件夹下有一个Ubuntu1.pdf 下面是几个基础知识,首先linux的根目录是”/ “cd / 就可以进入到根目录当前用户家目录则用~ 代替cd ~ 就可以进入家目录文件夹 一般来说,以根目录”/“ 开始的路径 就被称为是绝对路径.而当前用户的家目录的绝对路径则一般为/home/用户名使用cd /home /用户名 和使用cd ~ 是一样的意思 使用tab 键可以自动补全需要的文件名 使用方法是输入文件夹名字的前几个字母,点击TAB键 双点代表上一级目录,单点代表当前目录cd .. 是返回上级目录./是当前科执行程序 新建文件夹 mkdirmkdir testcd test/ 删除文件夹 rmdirrmdir 文件夹名这个指令要求这个文件夹必须是空的才能删除 删除文件(夹) rmrm 文件名 删除文件rm -rf 文件夹名删除目标文件夹及其下的所有文件 在根目录下 mkdir 一般用户是不能使用的必须是root 用户才可以使用sudo mkdir 才能实现新建 复制 cp 源文件路径 目标路径cp -rf 源文件路径 目标文件夹路径 移动 mvmv 文件名 移动路径mv不需要添加-rf命令 这个指令可以用来修改文件名mv 文件名]]></content>

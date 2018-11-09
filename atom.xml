@@ -91,7 +91,7 @@
     <link href="http://yoursite.com/2018/10/26/linux%E5%85%A5%E9%97%A8%E6%93%8D%E4%BD%9C2/"/>
     <id>http://yoursite.com/2018/10/26/linux入门操作2/</id>
     <published>2018-10-26T04:55:01.000Z</published>
-    <updated>2018-11-09T12:59:01.310Z</updated>
+    <updated>2018-11-09T13:19:33.084Z</updated>
     
     <content type="html"><![CDATA[<p>在终端中写文件</p><p>sublime  text</p><p>vim 不要乱按键盘</p><p>新建   vim helloVIM.txt</p><p>在普通模式下 ,<br>输入冒号后,然后便可以输入字母并回车,来执行保存,退出<br>w:保存 q是退出<br><a id="more"></a><br>在普通模式下 按下 i 进入插入模式<br>esc按键是退出插入模式</p><p>上下左右键可以移动光标   没有上下左右键 hjkl</p><p>连续摁下两次D  即dd  删除行</p><p>shell文件<br>shell想要变成可执行文件的话  第一行一定是#!/bin/sh<br>先去一个名字 echo_ex.sh  后缀名一定是sh  代表是shell文件<br>代码:<br><code>#!/bin/sh</code><br><code>echo &quot;i am so smart&quot;</code><br><code>echo &quot;you are so smart too&quot;</code><br><code>echo &quot;i love you &quot;</code><br><code>echo &quot;i like your idea&quot;</code><br><code>echo &quot;i like studying and researching&quot;</code></p><p>然后退出并且保存</p><p>但是还是不能执行  信息需要把他变成可执行模式</p><p>sudo chmod 777 echo_ex.sh</p><p>然后再输入<code>./echo_ex.sh</code></p><p>编写shell 文件说法</p>]]></content>
     
@@ -160,6 +160,30 @@
     
     
       <category term="Electrical Professional English" scheme="http://yoursite.com/tags/Electrical-Professional-English/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>linux C编程 一站式学习</title>
+    <link href="http://yoursite.com/2018/09/10/%E5%B5%8C%E5%85%A5%E5%BC%8FC/"/>
+    <id>http://yoursite.com/2018/09/10/嵌入式C/</id>
+    <published>2018-09-10T10:53:20.000Z</published>
+    <updated>2018-11-09T13:19:33.084Z</updated>
+    
+    <content type="html"><![CDATA[<p>&emsp;&emsp;《linux C编程 一站式学习》<br>&emsp;&emsp;再学一次C语言。<br>&emsp;&emsp;从大学一年纪学习C语言。一直都是在windows平台下。</p><p>&emsp;&emsp;windows不用自己配置，所有操作都是界面化，win10之后连防火墙都不必要安装。</p><p>&emsp;&emsp;都是微软给惯坏了，哪怕我们日常随手接触的电脑，还是不了解系统底层的操作。对于普通的消费者而言，这没有什么，因为他们并不需要了解系统底层到底是怎么运作的，也不需要了解数据到底是怎么从一台电脑发送到另一台电脑的。<br><a id="more"></a><br>&emsp;&emsp;但是对于需要对计算机和互联网有更加深入理解的朋友。学习好使用Linux会对我们有很大的提升。<br>刚好之前购置了一台VPS主机，一直用作是V2ray的服务器了。最近给安装了Debian系统。ssh连接一下就可以愉快的做linux练习机了。</p><p>&emsp;&emsp;这就是我最近购置的关于linux下C语言的编程书籍。也可以看作是重新再学一次C语言了。<br><br><br>&emsp; <img src="https://i.imgur.com/xEcAMyL.jpg" alt="Imgur"></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&amp;emsp;&amp;emsp;《linux C编程 一站式学习》&lt;br&gt;&amp;emsp;&amp;emsp;再学一次C语言。&lt;br&gt;&amp;emsp;&amp;emsp;从大学一年纪学习C语言。一直都是在windows平台下。&lt;/p&gt;
+&lt;p&gt;&amp;emsp;&amp;emsp;windows不用自己配置，所有操作都是界面化，win10之后连防火墙都不必要安装。&lt;/p&gt;
+&lt;p&gt;&amp;emsp;&amp;emsp;都是微软给惯坏了，哪怕我们日常随手接触的电脑，还是不了解系统底层的操作。对于普通的消费者而言，这没有什么，因为他们并不需要了解系统底层到底是怎么运作的，也不需要了解数据到底是怎么从一台电脑发送到另一台电脑的。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Linux C" scheme="http://yoursite.com/categories/Linux-C/"/>
+    
+    
+      <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
     
   </entry>
   
