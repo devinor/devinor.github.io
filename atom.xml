@@ -87,11 +87,11 @@
   </entry>
   
   <entry>
-    <title>在终端中写文件</title>
+    <title>在Linux终端中写文件</title>
     <link href="http://yoursite.com/2018/10/26/linux%E5%85%A5%E9%97%A8%E6%93%8D%E4%BD%9C2/"/>
     <id>http://yoursite.com/2018/10/26/linux入门操作2/</id>
     <published>2018-10-26T04:55:01.000Z</published>
-    <updated>2018-11-09T04:11:37.456Z</updated>
+    <updated>2018-11-09T12:59:01.310Z</updated>
     
     <content type="html"><![CDATA[<p>在终端中写文件</p><p>sublime  text</p><p>vim 不要乱按键盘</p><p>新建   vim helloVIM.txt</p><p>在普通模式下 ,<br>输入冒号后,然后便可以输入字母并回车,来执行保存,退出<br>w:保存 q是退出<br><a id="more"></a><br>在普通模式下 按下 i 进入插入模式<br>esc按键是退出插入模式</p><p>上下左右键可以移动光标   没有上下左右键 hjkl</p><p>连续摁下两次D  即dd  删除行</p><p>shell文件<br>shell想要变成可执行文件的话  第一行一定是#!/bin/sh<br>先去一个名字 echo_ex.sh  后缀名一定是sh  代表是shell文件<br>代码:<br><code>#!/bin/sh</code><br><code>echo &quot;i am so smart&quot;</code><br><code>echo &quot;you are so smart too&quot;</code><br><code>echo &quot;i love you &quot;</code><br><code>echo &quot;i like your idea&quot;</code><br><code>echo &quot;i like studying and researching&quot;</code></p><p>然后退出并且保存</p><p>但是还是不能执行  信息需要把他变成可执行模式</p><p>sudo chmod 777 echo_ex.sh</p><p>然后再输入<code>./echo_ex.sh</code></p><p>编写shell 文件说法</p>]]></content>
     
@@ -137,35 +137,6 @@
   </entry>
   
   <entry>
-    <title>linux入门操作(1)</title>
-    <link href="http://yoursite.com/2018/10/25/linux%E5%85%A5%E9%97%A8%E6%93%8D%E4%BD%9C/"/>
-    <id>http://yoursite.com/2018/10/25/linux入门操作/</id>
-    <published>2018-10-25T04:45:28.000Z</published>
-    <updated>2018-11-09T04:11:35.659Z</updated>
-    
-    <content type="html"><![CDATA[<p>使用环境:ubuntu 16.04 LTS</p><ul><li>终端<br>打开终端的方式有两种<br>直接寻找程序打开<br>使用快捷键 <code>ctrl +alt +T</code></li></ul><p>&emsp;&emsp;进入终端后,如果是默认设置的话,则会进入该用户的当前的家用户目录中<br>&emsp;&emsp;在终端中输入ls  就可以看到家目录下所有的内容<br>&emsp;&emsp;当输入<code>ls -l</code><br>&emsp;&emsp;就会显示当前目录下所有的内容的详细列表<br>&emsp;&emsp;这里的<code>-l</code> 是附加命令,是针对ls 这个命令进行的更多功能设置</p><p>当使用 ls 指令后我们看到 家目录下有一个downloads文件夹  我们进入这个文件夹,输入<code>cd downloads/</code></p><p>使用ls 指令会看到ls  至指令下 downloads 文件夹下有一个Ubuntu1.pdf </p><p>下面是几个基础知识,<br>首先linux的根目录是”/ “<br><a id="more"></a><br><code>cd /</code>  就可以进入到根目录<br>当前用户家目录则用~ 代替<br><code>cd ~</code>  就可以进入家目录文件夹</p><p>一般来说,以根目录”/“ 开始的路径 就被称为是绝对路径.<br>而当前用户的家目录的绝对路径则一般为<code>/home/用户名</code><br>使用<code>cd /home /用户名</code> 和使用<code>cd ~</code> 是一样的意思</p><p>使用tab 键可以自动补全需要的文件名 使用方法是输入文件夹名字的前几个字母,点击<code>TAB</code>键</p><p>双点代表上一级目录,单点代表当前目录<br><code>cd ..</code> 是返回上级目录<br><code>./</code>是当前科执行程序</p><p>新建文件夹 mkdir<br><code>mkdir  test</code><br><code>cd test/</code></p><p>删除文件夹 rmdir<br><code>rmdir 文件夹名</code><br>这个指令要求这个文件夹必须是空的才能删除</p><p>删除文件(夹) rm<br><code>rm 文件名</code>   删除文件<br><code>rm -rf</code>  文件夹名删除目标文件夹及其下的所有文件</p><p>在根目录下 mkdir  一般用户是不能使用的必须是root 用户才可以<br>使用<code>sudo mkdir</code>  才能实现新建</p><p>复制  cp<br>  源文件路径  目标路径<br><code>cp -rf 源文件路径 目标文件夹路径</code></p><p>移动 mv<br><code>mv  文件名 移动路径</code><br>mv不需要添加-rf命令</p><p>这个指令可以用来修改文件名<br>mv  文件名</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;使用环境:ubuntu 16.04 LTS&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;终端&lt;br&gt;打开终端的方式有两种&lt;br&gt;直接寻找程序打开&lt;br&gt;使用快捷键 &lt;code&gt;ctrl +alt +T&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&amp;emsp;&amp;emsp;进入终端后,如果是默认设置的话,则会进入该用户的当前的家用户目录中&lt;br&gt;&amp;emsp;&amp;emsp;在终端中输入ls  就可以看到家目录下所有的内容&lt;br&gt;&amp;emsp;&amp;emsp;当输入&lt;code&gt;ls -l&lt;/code&gt;&lt;br&gt;&amp;emsp;&amp;emsp;就会显示当前目录下所有的内容的详细列表&lt;br&gt;&amp;emsp;&amp;emsp;这里的&lt;code&gt;-l&lt;/code&gt; 是附加命令,是针对ls 这个命令进行的更多功能设置&lt;/p&gt;
-&lt;p&gt;当使用 ls 指令后我们看到 家目录下有一个downloads文件夹  我们进入这个文件夹,输入&lt;code&gt;cd downloads/&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;使用ls 指令会看到ls  至指令下 downloads 文件夹下有一个Ubuntu1.pdf &lt;/p&gt;
-&lt;p&gt;下面是几个基础知识,&lt;br&gt;首先linux的根目录是”/ “&lt;br&gt;
-    
-    </summary>
-    
-      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
-    
-    
-      <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
     <title>CURRENT AND VOLTAGE</title>
     <link href="http://yoursite.com/2018/10/15/Professional-English-1/"/>
     <id>http://yoursite.com/2018/10/15/Professional-English-1/</id>
@@ -193,11 +164,40 @@
   </entry>
   
   <entry>
+    <title>linux入门操作(1)</title>
+    <link href="http://yoursite.com/2018/06/25/linux%E5%85%A5%E9%97%A8%E6%93%8D%E4%BD%9C/"/>
+    <id>http://yoursite.com/2018/06/25/linux入门操作/</id>
+    <published>2018-06-25T04:45:28.000Z</published>
+    <updated>2018-11-09T12:30:05.535Z</updated>
+    
+    <content type="html"><![CDATA[<p>使用环境:ubuntu 16.04 LTS</p><ul><li>终端<br>打开终端的方式有两种<br>直接寻找程序打开<br>使用快捷键 <code>ctrl +alt +T</code></li></ul><p>&emsp;&emsp;进入终端后,如果是默认设置的话,则会进入该用户的当前的家用户目录中<br>&emsp;&emsp;在终端中输入ls  就可以看到家目录下所有的内容<br>&emsp;&emsp;当输入<code>ls -l</code><br>&emsp;&emsp;就会显示当前目录下所有的内容的详细列表<br>&emsp;&emsp;这里的<code>-l</code> 是附加命令,是针对ls 这个命令进行的更多功能设置</p><p>当使用 ls 指令后我们看到 家目录下有一个downloads文件夹  我们进入这个文件夹,输入<code>cd downloads/</code></p><p>使用ls 指令会看到ls  至指令下 downloads 文件夹下有一个Ubuntu1.pdf </p><p>下面是几个基础知识,<br>首先linux的根目录是”/ “<br><a id="more"></a><br><code>cd /</code>  就可以进入到根目录<br>当前用户家目录则用~ 代替<br><code>cd ~</code>  就可以进入家目录文件夹</p><p>一般来说,以根目录”/“ 开始的路径 就被称为是绝对路径.<br>而当前用户的家目录的绝对路径则一般为<code>/home/用户名</code><br>使用<code>cd /home /用户名</code> 和使用<code>cd ~</code> 是一样的意思</p><p>使用tab 键可以自动补全需要的文件名 使用方法是输入文件夹名字的前几个字母,点击<code>TAB</code>键</p><p>双点代表上一级目录,单点代表当前目录<br><code>cd ..</code> 是返回上级目录<br><code>./</code>是当前科执行程序</p><p>新建文件夹 mkdir<br><code>mkdir  test</code><br><code>cd test/</code></p><p>删除文件夹 rmdir<br><code>rmdir 文件夹名</code><br>这个指令要求这个文件夹必须是空的才能删除</p><p>删除文件(夹) rm<br><code>rm 文件名</code>   删除文件<br><code>rm -rf</code>  文件夹名删除目标文件夹及其下的所有文件</p><p>在根目录下 mkdir  一般用户是不能使用的必须是root 用户才可以<br>使用<code>sudo mkdir</code>  才能实现新建</p><p>复制  cp<br>  源文件路径  目标路径<br><code>cp -rf 源文件路径 目标文件夹路径</code></p><p>移动 mv<br><code>mv  文件名 移动路径</code><br>mv不需要添加-rf命令</p><p>这个指令可以用来修改文件名<br>mv  文件名</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;使用环境:ubuntu 16.04 LTS&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;终端&lt;br&gt;打开终端的方式有两种&lt;br&gt;直接寻找程序打开&lt;br&gt;使用快捷键 &lt;code&gt;ctrl +alt +T&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&amp;emsp;&amp;emsp;进入终端后,如果是默认设置的话,则会进入该用户的当前的家用户目录中&lt;br&gt;&amp;emsp;&amp;emsp;在终端中输入ls  就可以看到家目录下所有的内容&lt;br&gt;&amp;emsp;&amp;emsp;当输入&lt;code&gt;ls -l&lt;/code&gt;&lt;br&gt;&amp;emsp;&amp;emsp;就会显示当前目录下所有的内容的详细列表&lt;br&gt;&amp;emsp;&amp;emsp;这里的&lt;code&gt;-l&lt;/code&gt; 是附加命令,是针对ls 这个命令进行的更多功能设置&lt;/p&gt;
+&lt;p&gt;当使用 ls 指令后我们看到 家目录下有一个downloads文件夹  我们进入这个文件夹,输入&lt;code&gt;cd downloads/&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;使用ls 指令会看到ls  至指令下 downloads 文件夹下有一个Ubuntu1.pdf &lt;/p&gt;
+&lt;p&gt;下面是几个基础知识,&lt;br&gt;首先linux的根目录是”/ “&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
+    
+    
+      <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
     <title>无线充电</title>
     <link href="http://yoursite.com/2018/05/14/%E6%97%A0%E7%BA%BF%E5%85%85%E7%94%B5/"/>
     <id>http://yoursite.com/2018/05/14/无线充电/</id>
     <published>2018-05-14T02:46:50.000Z</published>
-    <updated>2018-11-09T04:17:21.215Z</updated>
+    <updated>2018-11-09T12:30:39.322Z</updated>
     
     <content type="html"><![CDATA[<p><img src="https://i.imgur.com/tHyaexi.png" alt="Imgur"><br>首先交流电经过电能发送端的整流电路和逆变电路变成高频的交流电，然后传递给线圈，将能量传送到电能的接收端，最后电能的接收端再经过整流或逆变得到直流电或交流电供给负载使用</p><p>#发射端<br><img src="https://i.imgur.com/qDB3Xck.png" alt="Imgur"><br>&emsp;&emsp;5V的直流电传递给给高频逆变电路，然后再传递给谐振网络，让系统频率变成 llOKHz至205KHz的高频交流电。高频率的交流电传递给后而的线圈，磁场会发生变化，手机系统能鼠的接收端线会感应到这种变化。反馈信号电路和控制器是对发射线圈电流的俭测.<br><a id="more"></a><br>&emsp;&emsp;当系统进行工作时，如果电流出现大的波动，表示系统正在进行不正常的充电或者系统遭到了破坏，那么反馈信号电路就会将信息传递给控制器，然后做出相应的调节，一方而保护了系统，另一方而也让系统能够更加精确.高效的工作。控制器接收反馈信号电路的信号，然后判断该系统足否能够正常工作.并对当前线圈的电流值进行相应计算。<br>频率的变化对系统非常重要，选择逆变电路的时候，要保证某一频率下，效率不会很低。从内部驱动的电路组成来看，大致可以分为全桥逆变电路。半桥逆变电路，单端式逆变电路。<br><img src="https://i.imgur.com/Pt9NRIz.png" alt="Imgur"><br>由上图可知，在全桥逆变的电路结构中4个开关管是一样的，通过控制这四 个管子的快速开通和关断来形成高频交流电，从而能够将电能传递给线圈的副边。<br>工作原理为：当Q1和Q4导通时，另外两个管子是关断的，电流经过Q1后流过 线圈，然后经过Q4流回电源负极；<br>同理，在下一时刻，Q2和Q3导通时，Q1和Q4是关断的，电流经过Q3后流过线圈，然后经Q2流回电源负极。其中二极管 作用为续流，这两个过程中流经线圈的电流方向相反，改变4个开关管的频率就可以改变交流线圈的电流频率.<br>本电路实现软开关变得控制比较容易。缺点是开关管的控制比较复杂。不过转换效率高，功率大。所以应用广泛。</p><p>#接收端<br><img src="https://i.imgur.com/op7EfSK.png" alt="Imgur"><br>AC- DC整流变换电路将手机接 端线圈中高频率的交流电转换成直流电 ，<br>此将转换成系统所需要的5 V直流电 ，然 后传递给负载 。反馈信号电路负<br>责 检 测 AC- DC变 换 电 路 的 输 出 电 值 ，并传送给控制器 ，然 后 让 控 制 器 能 够 及时的了解到当前传输功率的大小，这样可以及时的 将误差信息传递到发射端。在这里，控制器是很重要的组成部分，它能够监视用电设备的充电状态 ，比如充电 是否完成，充电是否异常等。 </p><p>前面分析得知，系统能量的输入端采用全桥逆变电路，然后经过耦合线圈将能量传递到输电到输出端。系统的主电路如下图所示。<br><img src="https://i.imgur.com/UjCLlBe.png" alt="Imgur"></p>]]></content>
     
@@ -220,7 +220,7 @@
     <link href="http://yoursite.com/2018/05/13/INTRO/"/>
     <id>http://yoursite.com/2018/05/13/INTRO/</id>
     <published>2018-05-13T10:48:24.000Z</published>
-    <updated>2018-11-07T13:22:23.456Z</updated>
+    <updated>2018-11-09T12:28:42.637Z</updated>
     
     <content type="html"><![CDATA[<p>&nbsp; 业精于勤，荒于嬉；行成于思，毁于随</p><p>&nbsp; 共勉!</p>]]></content>
     
