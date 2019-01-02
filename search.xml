@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[centos系统文件]]></title>
+    <url>%2F2018%2F11%2F21%2F%E7%B3%BB%E7%BB%9F%E6%96%87%E4%BB%B6%2F</url>
+    <content type="text"><![CDATA[bin 文件夹 储存的是二进制目录 用户集工具boot文件夹 启动目录dev 文件夹 设备文件夹 创建设备节点etc文件夹 是系统的配置的文件目录 壁纸 logohome文件夹 用户文件夹lib文件夹 库目录 是系统和应用层序的库文件media文件夹 是媒体目录 存放可移动媒体设备的挂载点 光盘mnt 文件夹 挂载目录 是可移动设备 u盘opt 文件夹 可选目录 第三方的软件包 或者是下载的内容proc文件夹 进程文件夹root文件夹 根目录run文件夹 运行目录 比如说是本地服务的运行文件sbin文件夹 存放的是二进制文件srv文件夹 服务目录 存放本地服务的相关文件sys 文件夹 系统目录 存放硬件信息tmp文件夹 临时文件夹usr 文件夹 用户的二进制文件夹 用户的文件和数据都是存放在这里var 文件夹 是可变化目录 一般用来存放日志文件]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[ros系统catkin文件]]></title>
     <url>%2F2018%2F11%2F07%2Fros%E7%B3%BB%E7%BB%9Fcatkin%E6%96%87%E4%BB%B6%2F</url>
     <content type="text"><![CDATA[catkin 是用来编译ros程序的catkin 工作空间就是一个文件夹组织和管理功能包的文件用catkin工具编译 各种ros代码放在catkin workpace 文件夹中如何:创建一个catkin的文件空间指令:catkin_make 帮助我们初始化工作空间$mkdir ~p ~/catkin_ws/src$cd ~/catkin_ws/$catkin_make其实catkin_make的主要功能是编译 编译$cd -/catkin_ws #回到工作空间$catkin_make$source -/catkin_ws/devel/setup.bash #编译完成之后要source刷新环境 注意:catkin_make 之前一定要回到catkin workspacecatkin_make 之后一定要devel/setup.bash这句话是把刚刚编译的worksapce 刷新到环境里面 catkin workspace 里的src文件 package源代码 build文件夹 cmake&amp; catkin 缓存文件和中间文件devel文件夹: 生成的目标文件 包括 1.头文件 2.动态链接库 3.静态链接库 4.可执行文件bulid 和devel 初学者不用掌握 注意::ros build 是旧的版本 看到资料直接忽略 src里面到底有什么src 里面有许多packagepackage 是catkin编译的基本单元catkin的编译对象就是一个又一个package]]></content>

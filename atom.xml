@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-11-09T13:24:31.515Z</updated>
+  <updated>2018-11-21T15:26:41.174Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,24 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>centos系统文件</title>
+    <link href="http://yoursite.com/2018/11/21/%E7%B3%BB%E7%BB%9F%E6%96%87%E4%BB%B6/"/>
+    <id>http://yoursite.com/2018/11/21/系统文件/</id>
+    <published>2018-11-21T15:24:11.000Z</published>
+    <updated>2018-11-21T15:26:41.174Z</updated>
+    
+    <content type="html"><![CDATA[<p>bin 文件夹    储存的是二进制目录  用户集工具<br>boot文件夹    启动目录<br>dev 文件夹    设备文件夹  创建设备节点<br>etc文件夹     是系统的配置的文件目录  壁纸 logo<br>home文件夹    用户文件夹<br>lib文件夹     库目录 是系统和应用层序的库文件<br>media文件夹   是媒体目录  存放可移动媒体设备的挂载点    光盘<br>mnt 文件夹    挂载目录  是可移动设备 u盘<br>opt 文件夹    可选目录 第三方的软件包 或者是下载的内容<br><a id="more"></a><br>proc文件夹    进程文件夹<br>root文件夹    根目录<br>run文件夹     运行目录 比如说是本地服务的运行文件<br>sbin文件夹    存放的是二进制文件<br>srv文件夹     服务目录   存放本地服务的相关文件<br>sys 文件夹    系统目录 存放硬件信息<br>tmp文件夹     临时文件夹<br>usr 文件夹    用户的二进制文件夹 用户的文件和数据都是存放在这里<br>var 文件夹    是可变化目录 一般用来存放日志文件</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;bin 文件夹    储存的是二进制目录  用户集工具&lt;br&gt;boot文件夹    启动目录&lt;br&gt;dev 文件夹    设备文件夹  创建设备节点&lt;br&gt;etc文件夹     是系统的配置的文件目录  壁纸 logo&lt;br&gt;home文件夹    用户文件夹&lt;br&gt;lib文件夹     库目录 是系统和应用层序的库文件&lt;br&gt;media文件夹   是媒体目录  存放可移动媒体设备的挂载点    光盘&lt;br&gt;mnt 文件夹    挂载目录  是可移动设备 u盘&lt;br&gt;opt 文件夹    可选目录 第三方的软件包 或者是下载的内容&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>ros系统catkin文件</title>
