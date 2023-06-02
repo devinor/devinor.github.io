@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="应用层">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络通信协议(3)">
+<meta property="og:url" content="http://yoursite.com/2018/11/07/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE3/index.html">
+<meta property="og:site_name" content="Devinor&#39;s Blog">
+<meta property="og:description" content="应用层">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.imgur.com/46b9CAd.png">
+<meta property="og:image" content="https://i.imgur.com/sMXDp9F.png">
+<meta property="article:published_time" content="2018-11-07T04:21:57.000Z">
+<meta property="article:modified_time" content="2023-06-02T16:52:09.147Z">
+<meta property="article:author" content="Devin Chen">
+<meta property="article:tag" content="网络通信协议">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/46b9CAd.png">
+
+<link rel="canonical" href="http://yoursite.com/2018/11/07/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>网络通信协议(3) | Devinor's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Devinor's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Devinor's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Diversity  is  essential  to  happiness</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/07/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Devin Chen">
+      <meta itemprop="description" content="须知参差多态，乃是幸福本源">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Devinor's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          网络通信协议(3)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-11-07 12:21:57" itemprop="dateCreated datePublished" datetime="2018-11-07T12:21:57+08:00">2018-11-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-06-03 00:52:09" itemprop="dateModified" datetime="2023-06-03T00:52:09+08:00">2023-06-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/" itemprop="url" rel="index"><span itemprop="name">网络通信协议</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>应用层</p>
+<span id="more"></span>
+
+<p>应用层<br>&amp;emsp;&amp;emsp;由于互联网是开放的架构, 数据来源是五花八门.所以事先必须规定一些格式,否则根本没有办法解读.<br>&amp;emsp;&amp;emsp;现在讲的应用层就是规定应用程序的数据格式.<br>&amp;emsp;&amp;emsp;举个例子, TCP协议可以为各式各样的程序传递数据, 比如EMAIL,www,FTP等等, 那么必须有不同的协议规定电子邮件, 网页, FTP的数据格式.这些应用程序的协议就构成了一个应用层, 这就是我们说的五层协议里面最高的一层, 是面对用户的.</p>
+<p>他的数据就放在TCP协议的data部分,所以以太网数据包就会变成以下的样子.</p>
+<table>
+<thead>
+<tr>
+<th>Ethernet head</th>
+<th>IP head</th>
+<th>TCP head</th>
+<th>–Application Layer data–</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><br/></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><br/></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><img src="https://i.imgur.com/46b9CAd.png" alt="Imgur"></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>&amp;emsp;&amp;emsp;  在这幅图中, 有4台主机.1和2处于一个子网,3和4处于同一子网.<br>&amp;emsp; &amp;emsp; 如果1给4发送数据包.然后4告诉1, 收到了数据包.这样就可以实现两台计算机之间的通讯.<br>&amp;emsp; &amp;emsp; 而发送这个数据包就必须需要两个地址. MAC地址和IP地址, 有了这两个地址之后, 数据包才能够准确的送到接受者的手中.<br>&amp;emsp; &amp;emsp; 但是MAC地址是有局限的, 如果两台主机不在同一子网, 就没有办法知道彼此的MAC地址.<br><br/></p>
+<p>&amp;emsp;&amp;emsp;  所以出现了网关(gateway), 它实现转发的功能. 主机1给主机4发送数据包.他先判断主机4是否处于同一子网.如果不是, 主机1把数据包发给他的网关(A).<br>&amp;emsp; &amp;emsp; 这网关通过路由协议, 发现了主机4处于另一个网关内(B). A网关把数据发送给了B网关, B网关又把数据转发给了主机4.</p>
+<p>&amp;emsp; &amp;emsp; 主机1想要把数据发送给A网关, 需要知道A网关的MAC地址.<br>&amp;emsp; &amp;emsp; 所以数据包的目标地址实际上分为两种情况.</p>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>数据包地址</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>目标主机同一子网</td>
+<td>对方的MAC地址,对方的IP地址</td>
+</tr>
+<tr>
+<td>目标主机非同一子网</td>
+<td>网关的MAC地址,对方的IP地址</td>
+</tr>
+<tr>
+<td><br/></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>我们在windows中连接网络,可能会看到静态IP和动态IP的选项<br><img src="https://i.imgur.com/sMXDp9F.png" alt="Imgur"></p>
+<p>我们给电脑插上网线开机之后,不能立刻上网.我们必须要给电脑</p>
+<ul>
+<li>设置本机IP</li>
+<li>设置子网掩码</li>
+<li>设置网关的IP地址</li>
+<li>设置DNS的IP地址</li>
+</ul>
+<p>静态IP<br>&amp;emsp; 首先它设置比较专业<br>&amp;emsp; 其次设置静态IP后这个IP不能被其他计算机使用处于这两点, 大部分用户都是使用动态IP地址上网.</p>
+<p>动态IP<br>&amp;emsp; 所谓的动态IP就是指计算机开机以后会自动分配一个ip地址, 这个IP地址不会被别人设定.</p>
+<p>动态IP使用的协议是DHCP协议</p>
+<p>&amp;emsp;&amp;emsp;  这个协议规定了,在每一个子网中, 有一台计算机作为DHCP服务器.它专门去负责这个网络内的所有IP地址的自动分配.<br>&amp;emsp; &amp;emsp; 所有新的计算机加入这个网络之后,必须向DHCP服务器发送一个DHCP请求数据包.以此来申请IP地址和相关的网络参数.</p>
+<p>&amp;emsp; &amp;emsp; 之前提到,两个主机在同一子网时,必须知道对方的MAC地址IP地址,才能发送数据包.</p>
+<p>&amp;emsp; &amp;emsp;<br>但是问题来了<br>新加入的主机不知道这两个地址.<br><br/></p>
+<p>DHCP协议做了一些比较巧妙的设定,首先它是应用层的协议,建立在UDP协议之上.<br>所以数据包是这样的</p>
+<table>
+<thead>
+<tr>
+<th>Ethernet head</th>
+<th>IP head</th>
+<th>UDP head</th>
+<th>DHCP data</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&amp;emsp; &amp;emsp; 最前面的Ethernet head设置发出方,比如本机的MAC地和接受方DHCP服务器的MAC地址.</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>&amp;emsp; &amp;emsp; 发射方的MAC地址就是本机网卡的MAC地址,DHCP服务器的MAC地址是不知道的.</p>
+<p>&amp;emsp; &amp;emsp; 这个时候就会填入广播的地址,有一个默认的6组16进制数组成. FF:FF:FF:FF:FF:FF</p>
+<p>&amp;emsp; &amp;emsp; 后面的IP head 设置了发出方的IP地址和接受方的IP地址.对于两个主机而言,他们本机都不知道.于是发出方的IP设为0.0.0.0,接收方的IP设为255.255.255.255.</p>
+<p>&amp;emsp; &amp;emsp; 最后的UDP head设置发出方的端口和接受方的端口.这部分是由DHCP协议规定好的,发出方是68端口,接受方式67端口.</p>
+<p>&amp;emsp; &amp;emsp; 数据包构造完成之后就可以发送了.以太网是以广播发送的,在同一子网内的每一台主机都会收到这个包.因为接收方的地址是FF:FF:FF:FF:FF:FF所以看不出来是发给谁的.收到这个包的主机会分析这个包的IP地址,确定是不是发给自己的.之前讲ARP协议的时候,已经有接触.</p>
+<p>&amp;emsp; &amp;emsp; 当看到发出方的IP地址是0.0.0.0,接收方IP地址是255.255.255.255.于是DHCP服务器就知道这个包是发给我的.其他主机就会丢弃这个包.</p>
+<p>&amp;emsp; &amp;emsp; 接下来DHCP服务器会读出这个包的数据内容,然后分配好一个IP地址,发送回去一个DHCP响应数据包.</p>
+<p>&amp;emsp; &amp;emsp; DHCP响应数据包.它的格式和DHCP数据包类似.分配给请求方的IP地址和其他网络参数都会包含在data这部分.新加入的主机就知道了自己的IP地址,子网掩码,网关地址. 有了这个之后就可以上网冲浪了.</p>
+<p>下面举一个实例<br>#当访问一个网页的时候,互联网协议是怎么运作的?<br>在浏览器地址栏输入google.com<br>意味着浏览器要向google服务器发送一个请求的数据包.当从本地请求一个网络地址的时候.</p>
+<ul>
+<li>第一步要走的是DNS的协议<br>我们知道发送数据包必须要知道对方的IP地址,但是我们现在只知道<a target="_blank" rel="noopener" href="http://www.google.com.不知道他的ip地址/">www.google.com.不知道他的IP地址</a>.</li>
+</ul>
+<p>&amp;emsp; &amp;emsp;DNS协议就能够实现这样的功能,他可以将网址转换成IP地址<br>&amp;emsp; &amp;emsp;假设DNS服务器是8.8.8.8,于是向这个地址发送一个DNS数据包,使用53的端口.而DNS数据包的格式是这样的.</p>
+<table>
+<thead>
+<tr>
+<th>Ethernet head</th>
+<th>IP head</th>
+<th>UDP head</th>
+<th>DNS data</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&amp;emsp; &amp;emsp;我们发送这个数据包之后,DNS数据包会做出一个响应,他会告诉主机Google的IP地址.</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><br/></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<ul>
+<li>知道IP地址之后,就需要判断是否和本地处于同一个子网,就需要用到子网掩码.主机对本地的IP地址和从DNS服务器获取的IP地址进行二进制AND运算.由此判断是否在同一网络.</li>
+</ul>
+<p>&amp;emsp; &amp;emsp;因为不处于同一个子网,所以要向Google发送数据包就必须要经过网关(gateway).也就是路由器192.168.1.1. 进行转发.<br>接收方的MAC地址是网关的MAC地址.</p>
+<ul>
+<li>而浏览网页使用的是http协议,它的数据包结构是<table>
+<thead>
+<tr>
+<th>Ethernet head</th>
+<th>IP head</th>
+<th>TCP head</th>
+<th>http data</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>假设http请求数据包的长度是4960字节,它会被嵌在TCP的数据包当中.</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<p>&amp;emsp; &amp;emsp;TCP协议<br>&amp;emsp; &amp;emsp;TCP的数据包需要设置一个端口,接收方(也就是google),他们的默认的http端口是80.<br>&amp;emsp; &amp;emsp;而发送方,也就是本机.它的端口是随机生成的1024-65535之间的整数.假设是12345.</p>
+<p>&amp;emsp; &amp;emsp;TCP协议的标头(head)是20字节,加上嵌入http的数据包,总长度是4980字节.</p>
+<ul>
+<li>再往下走是IP协议,这是已知的,发送方是我本机,接受方IP地址是DNS响应包的里的地址.</li>
+</ul>
+<p>&amp;emsp; &amp;emsp;IP数据包的标头(head)是20字节,加上嵌入的TCP数据包,总长度是5000字节.</p>
+<p>&amp;emsp; &amp;emsp;最后IP数据包嵌入以太网数据包,以太网数据包需要设置双方的MAC地址,发送方是本机的网卡MAC地址,接受方是网关的MAC地址.他通过ARP协议可以得到.</p>
+<p>&amp;emsp; &amp;emsp;以太网的数据部分最大长度是1500字节,现在IP数据包的长度是5000字节,所以这个IP数据包要被分割成4个包.<br>因为每一个包都有自己的IP标头(head).他们是20个字节.</p>
+<table>
+<thead>
+<tr>
+<th>以太网包头</th>
+<th>ip包头</th>
+<th>tcp 数据</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Ethernet head</td>
+<td>IP head</td>
+<td>TCP data_1(1500字节)</td>
+</tr>
+<tr>
+<td>Ethernet head</td>
+<td>IP head</td>
+<td>TCP data_2(1500字节)</td>
+</tr>
+<tr>
+<td>Ethernet head</td>
+<td>IP head</td>
+<td>TCP data_3(1500字节)</td>
+</tr>
+<tr>
+<td>Ethernet head</td>
+<td>IP head</td>
+<td>TCP data_4(560字节)</td>
+</tr>
+</tbody></table>
+<p>&amp;emsp; &amp;emsp;这就是http的请求德过程,请求结束之后.服务端会给本机响应.传回HTML网页.浏览器将他渲染出来.</p>
+<p>&amp;emsp; &amp;emsp;这个过程进过多个网关的转发.Google的服务器收到了四个数据包之后,根据IP标题的序号.把四个数据包拼起来,取出一个完整的TCP数据包.<br>&amp;emsp; &amp;emsp;然后去读取Http请求,接着做一个http响应.最后再用TCP协议发回来.<br>&amp;emsp; &amp;emsp;本机收到这个响应之后,我们就能看到这个网页,也就完成一次网络通讯.</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/" rel="tag"># 网络通信协议</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/11/07/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A12/" rel="prev" title="网络通信(2)">
+      <i class="fa fa-chevron-left"></i> 网络通信(2)
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/11/07/ros%E7%B3%BB%E7%BB%9Fcatkin%E6%96%87%E4%BB%B6/" rel="next" title="ros系统catkin文件">
+      ros系统catkin文件 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Devin Chen"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Devin Chen</p>
+  <div class="site-description" itemprop="description">须知参差多态，乃是幸福本源</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">devinor</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

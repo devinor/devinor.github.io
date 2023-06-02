@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="网络通信协议基本介绍">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络通讯协议(1)">
+<meta property="og:url" content="http://yoursite.com/2018/10/25/TCP-IP-part1/index.html">
+<meta property="og:site_name" content="Devinor&#39;s Blog">
+<meta property="og:description" content="网络通信协议基本介绍">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.imgur.com/AYYE2WB.png">
+<meta property="og:image" content="https://i.imgur.com/OW22j94.png">
+<meta property="og:image" content="https://i.imgur.com/tQWzvtg.png">
+<meta property="og:image" content="https://i.imgur.com/Vp3Cswb.jpg">
+<meta property="article:published_time" content="2018-10-25T13:28:22.000Z">
+<meta property="article:modified_time" content="2023-06-02T16:53:28.337Z">
+<meta property="article:author" content="Devin Chen">
+<meta property="article:tag" content="网络通信协议">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/AYYE2WB.png">
+
+<link rel="canonical" href="http://yoursite.com/2018/10/25/TCP-IP-part1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>网络通讯协议(1) | Devinor's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Devinor's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Devinor's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Diversity  is  essential  to  happiness</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/25/TCP-IP-part1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Devin Chen">
+      <meta itemprop="description" content="须知参差多态，乃是幸福本源">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Devinor's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          网络通讯协议(1)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-10-25 21:28:22" itemprop="dateCreated datePublished" datetime="2018-10-25T21:28:22+08:00">2018-10-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-06-03 00:53:28" itemprop="dateModified" datetime="2023-06-03T00:53:28+08:00">2023-06-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/" itemprop="url" rel="index"><span itemprop="name">网络通信协议</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>网络通信协议基本介绍</p>
+<span id="more"></span>
+
+<p>&amp;emsp;&amp;emsp;互联网的实现分为好几层,每一层都有自己的功能,就好比盖房子,每一层都是依靠下一层的支持. 用户接触到的是最上面的一层.</p>
+<p>&amp;emsp;&amp;emsp;用户接触到的是最上面的一层, 根本没有感觉到下面的层.而要理解互联网就必须要从下层开始, 自下而上的理解每一层的含义. 而如何分层,有不同的模型.</p>
+<p>&amp;emsp;&amp;emsp;有的是七层模型, 有的分为五层. 我们一般倾向于五层协议, 这里给大家阐述的也都是五层协议.<br><br/><br><img src="https://i.imgur.com/AYYE2WB.png" alt="GitHub Logo"></p>
+<p>&amp;emsp;&amp;emsp;这个图中我们看见一个主机A和一主机B相互发送数据.而他们的底层支持就包含了这五层协议.</p>
+<p><img src="https://i.imgur.com/OW22j94.png" alt="GitHub Logo"></p>
+<p>自下而上</p>
+<ul>
+<li>Physcial Layer, 物理层 </li>
+<li>Data Link Layer (MAC), 数据链路层 </li>
+<li>Network Layer (IP), 网路层 </li>
+<li>Transport Layer (TCP UDP), 传输层</li>
+<li>Application Layer, 应用层</li>
+</ul>
+<p>&amp;emsp;&amp;emsp;越底层离物理硬件越近,越高层和用户越近.每一层都是完成某一种功能.<br>为了实现这些功能,需要遵守共同的规则,我们叫做协议(protocol)<br ><br>&amp;emsp;&amp;emsp;在互联网中,每一层都定义了非常多的协议,而这些协议的总称就叫互联网协议,它是互联网的核心.</p>
+<p><img src="https://i.imgur.com/tQWzvtg.png" alt="Imgur"></p>
+<p>上图是对五层协议的概述:<br>&amp;emsp;&amp;emsp;应用层(Application Layer) : web服务器做交互<br>&amp;emsp;&amp;emsp;传输层(Transport Layer) : 两个远程主机建立连接<br>&amp;emsp;&amp;emsp;网路层(Network Layer) : 通过IP笛子传输数据包<br>&amp;emsp;&amp;emsp;数据链层(Data Link Layer) : 通过MAC地址交换帧数据<br>&amp;emsp;&amp;emsp;物理层(Physcial Layer) : 帧中的比特进行编码和解&amp;emsp;&amp;emsp;码，并包括在网络上驱动和接收信号的收发器。</p>
+<p><img src="https://i.imgur.com/Vp3Cswb.jpg" alt="Imgur"></p>
+<p>比方说 下载一个网页的话<br>&amp;emsp;&amp;emsp;应用层: 输一个IP地址192.168.1.102 默认输入80端口,下载他们<br>&amp;emsp;&amp;emsp;传输层: 它需要告诉服务器:客户端端口是31244,要连接的服务端端口是80<br>&amp;emsp;&amp;emsp;网路层: 两台主机的IP和端口在互相通讯<br>&amp;emsp;&amp;emsp;网络链路层: 添加包含MAC地址信息的标头以创建帧。然后将帧发送到物理层以发送比特</p>
+<p>#物理层</p>
+<p>&amp;emsp;&amp;emsp;电脑组网需要用电缆,光缆,无线电波把电脑连接起来.他们就是把电脑连接起来的物理手段.主要规定了网络中的电气特性,作用是负责传输0和1这样的电信号.</p>
+<p>#数据链路<br>&amp;emsp;&amp;emsp;但是单纯的传输0和1,没有什么意义.所以,出现了数据链路层<br>&amp;emsp;&amp;emsp;多少个电信号算一组,一个信号位又有什么意义,数据链路层就解决了这个问题<br>&amp;emsp;&amp;emsp;他在物理层的上方确定了0和1的分组方式.也就是常说的以太网协议.<br>&amp;emsp;&amp;emsp;以太网协议规定一组电信号构成了一个数据包,我们把他叫做帧<br>&amp;emsp;&amp;emsp;每一个帧又分成两个部分,head 和 data </p>
+<table>
+<thead>
+<tr>
+<th>head</th>
+<th>……..data………..</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&amp;emsp;&amp;emsp;head:表头, 包含数据包的说明项 比方说发送者是谁,接受者是谁,数据类型等等</td>
+<td></td>
+</tr>
+<tr>
+<td>&amp;emsp;&amp;emsp;head在以太网协议中有一个长度的定义,他的固定长度是18个字节</td>
+<td></td>
+</tr>
+<tr>
+<td>&amp;emsp;&amp;emsp;data的长度最短是46字节,最长是1500字节</td>
+<td></td>
+</tr>
+<tr>
+<td>&amp;emsp;&amp;emsp;所以帧的最短长度是64字节,最长是1518字节</td>
+<td></td>
+</tr>
+<tr>
+<td>&amp;emsp;&amp;emsp;但是某些情况下,数据非常长,就需要被分割成多个帧进行发送</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>MAC地址:以太网的数据包的head包含了发送者和接受者的信息,MAC地址就是每一块网卡都有唯一的地址.长度是48个二进制位,通常是12个十六进制数去表示.有了这个MAC地址,就可以定位网卡和数据包的路径.为数据传输做了夯实的基础.</p>
+<p>#广播<br>一个网卡为什么会知道另一块网卡的地址.这个时候在以太网中,有一个ARP协议,他可以解决这个问题.这个在后面会有所涉及.<br>我们需要知道,以太网数据包必须知道接收方的MAC地址才能够发送,<br>其次就算有了MAC地址,系统怎么样才能把数据包准确的发送到接受方.<br>在以太网中采用了一种非常原始的方式,他不是准确的把数据包发送到接受方<br>而是向本网络内的所有计算机房发送,让每一台计算机自己去判断自己是不是接受方.</p>
+<p>假设1,2,3,4,5计算机在同一个网络中</p>
+<ul>
+<li>广播 1号计算机向处于同一网络中的所有计算机发送数据包</li>
+<li>2,3,4,5号计算机都收到这个包,读取数据包head部分,找到接收方的MAC地址,与自身MAC地址比较</li>
+<li>MAC地址相同的话就接受这个包,然后做进一步处理,否则丢弃这个包.</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/" rel="tag"># 网络通信协议</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/10/15/Professional-English-1/" rel="prev" title="CURRENT AND VOLTAGE">
+      <i class="fa fa-chevron-left"></i> CURRENT AND VOLTAGE
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/10/26/linux%E5%85%A5%E9%97%A8%E6%93%8D%E4%BD%9C2/" rel="next" title="在Linux终端中写文件">
+      在Linux终端中写文件 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Devin Chen"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Devin Chen</p>
+  <div class="site-description" itemprop="description">须知参差多态，乃是幸福本源</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">devinor</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
