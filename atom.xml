@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Devinor&#39;s Blog</title>
+  <title>Devin&#39;s Blog</title>
   
   <subtitle>Diversity  is  essential  to  happiness</subtitle>
-  <link href="http://yoursite.com/atom.xml" rel="self"/>
+  <link href="https://devinor.github.io/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
-  <updated>2023-06-02T16:37:21.818Z</updated>
-  <id>http://yoursite.com/</id>
+  <link href="https://devinor.github.io/"/>
+  <updated>2023-06-04T15:21:32.946Z</updated>
+  <id>https://devinor.github.io/</id>
   
   <author>
     <name>Devin Chen</name>
@@ -17,9 +17,26 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Assert 如何工作</title>
+    <link href="https://devinor.github.io/2023/06/04/assert/"/>
+    <id>https://devinor.github.io/2023/06/04/assert/</id>
+    <published>2023-06-04T03:20:36.000Z</published>
+    <updated>2023-06-04T15:21:32.946Z</updated>
+    
+    <content type="html"><![CDATA[<p>Assert 为什么能够让程序退出?</p><span id="more"></span><h1 id="Assert"><a href="#Assert" class="headerlink" title="Assert"></a>Assert</h1><p>主要讨论下assert的实现方式，以glibc-2.2版本为例</p><h2 id="一、实验代码"><a href="#一、实验代码" class="headerlink" title="一、实验代码"></a>一、实验代码</h2><pre><code><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;assert.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span> <span class="params">(<span class="type">int</span> argc, <span class="type">char</span> **argv)</span> &#123;</span><br><span class="line"> assert(<span class="number">1</span> &lt; <span class="number">0</span>);</span><br><span class="line"> <span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line"> i = i;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></code></pre><h2 id="二、实验步骤"><a href="#二、实验步骤" class="headerlink" title="二、实验步骤"></a>二、实验步骤</h2><ol><li><p>使用<code>gcc -E main.c</code> 查看 预处理文件</p> <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"># <span class="number">1</span> <span class="string">&quot;main.c&quot;</span></span><br><span class="line"># <span class="number">1</span> <span class="string">&quot;&lt;built-in&gt;&quot;</span></span><br><span class="line"># <span class="number">1</span> <span class="string">&quot;&lt;command-line&gt;&quot;</span></span><br><span class="line"># <span class="number">31</span> <span class="string">&quot;&lt;command-line&gt;&quot;</span></span><br><span class="line"># <span class="number">1</span> <span class="string">&quot;/usr/include/stdc-predef.h&quot;</span> <span class="number">1</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line"># <span class="number">32</span> <span class="string">&quot;&lt;command-line&gt;&quot;</span> <span class="number">2</span></span><br><span class="line"># <span class="number">1</span> <span class="string">&quot;main.c&quot;</span></span><br><span class="line"># <span class="number">1</span> <span class="string">&quot;/usr/include/assert.h&quot;</span> <span class="number">1</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line"># <span class="number">35</span> <span class="string">&quot;/usr/include/assert.h&quot;</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line"># <span class="number">1</span> <span class="string">&quot;/usr/include/features.h&quot;</span> <span class="number">1</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line"># <span class="number">424</span> <span class="string">&quot;/usr/include/features.h&quot;</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line"># <span class="number">1</span> <span class="string">&quot;/usr/include/x86_64-linux-gnu/sys/cdefs.h&quot;</span> <span class="number">1</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line"># <span class="number">442</span> <span class="string">&quot;/usr/include/x86_64-linux-gnu/sys/cdefs.h&quot;</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line"># <span class="number">1</span> <span class="string">&quot;/usr/include/x86_64-linux-gnu/bits/wordsize.h&quot;</span> <span class="number">1</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line"># <span class="number">443</span> <span class="string">&quot;/usr/include/x86_64-linux-gnu/sys/cdefs.h&quot;</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line"># <span class="number">1</span> <span class="string">&quot;/usr/include/x86_64-linux-gnu/bits/long-double.h&quot;</span> <span class="number">1</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line"># <span class="number">444</span> <span class="string">&quot;/usr/include/x86_64-linux-gnu/sys/cdefs.h&quot;</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line"># <span class="number">425</span> <span class="string">&quot;/usr/include/features.h&quot;</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line"># <span class="number">448</span> <span class="string">&quot;/usr/include/features.h&quot;</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line"># <span class="number">1</span> <span class="string">&quot;/usr/include/x86_64-linux-gnu/gnu/stubs.h&quot;</span> <span class="number">1</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line"># <span class="number">10</span> <span class="string">&quot;/usr/include/x86_64-linux-gnu/gnu/stubs.h&quot;</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line"># <span class="number">1</span> <span class="string">&quot;/usr/include/x86_64-linux-gnu/gnu/stubs-64.h&quot;</span> <span class="number">1</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line"># <span class="number">11</span> <span class="string">&quot;/usr/include/x86_64-linux-gnu/gnu/stubs.h&quot;</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line"># <span class="number">449</span> <span class="string">&quot;/usr/include/features.h&quot;</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line"># <span class="number">36</span> <span class="string">&quot;/usr/include/assert.h&quot;</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line"># <span class="number">66</span> <span class="string">&quot;/usr/include/assert.h&quot;</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># <span class="number">69</span> <span class="string">&quot;/usr/include/assert.h&quot;</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line"><span class="keyword">extern</span> <span class="type">void</span> __assert_fail (<span class="type">const</span> <span class="type">char</span> *__assertion, <span class="type">const</span> <span class="type">char</span> *__file,</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> __line, <span class="type">const</span> <span class="type">char</span> *__function)</span><br><span class="line">    __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="type">void</span> __assert_perror_fail (<span class="type">int</span> __errnum, <span class="type">const</span> <span class="type">char</span> *__file,</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> __line, <span class="type">const</span> <span class="type">char</span> *__function)</span><br><span class="line">    __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="type">void</span> __assert (<span class="type">const</span> <span class="type">char</span> *__assertion, <span class="type">const</span> <span class="type">char</span> *__file, <span class="type">int</span> __line)</span><br><span class="line">    __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># <span class="number">2</span> <span class="string">&quot;main.c&quot;</span> <span class="number">2</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># <span class="number">3</span> <span class="string">&quot;main.c&quot;</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span> <span class="params">(<span class="type">int</span> argc, <span class="type">char</span> **argv)</span> &#123;</span><br><span class="line"></span><br><span class="line"># <span class="number">4</span> <span class="string">&quot;main.c&quot;</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line">((<span class="type">void</span>) <span class="keyword">sizeof</span> ((</span><br><span class="line"># <span class="number">4</span> <span class="string">&quot;main.c&quot;</span></span><br><span class="line"><span class="number">1</span> &lt; <span class="number">0</span></span><br><span class="line"># <span class="number">4</span> <span class="string">&quot;main.c&quot;</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line">) ? <span class="number">1</span> : <span class="number">0</span>), __extension__ (&#123; <span class="keyword">if</span> (</span><br><span class="line"># <span class="number">4</span> <span class="string">&quot;main.c&quot;</span></span><br><span class="line"><span class="number">1</span> &lt; <span class="number">0</span></span><br><span class="line"># <span class="number">4</span> <span class="string">&quot;main.c&quot;</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line">) ; <span class="keyword">else</span> __assert_fail (</span><br><span class="line"># <span class="number">4</span> <span class="string">&quot;main.c&quot;</span></span><br><span class="line"><span class="string">&quot;1 &lt; 0&quot;</span></span><br><span class="line"># <span class="number">4</span> <span class="string">&quot;main.c&quot;</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line">, <span class="string">&quot;main.c&quot;</span>, <span class="number">4</span>, __extension__ __PRETTY_FUNCTION__); &#125;))</span><br><span class="line"># <span class="number">4</span> <span class="string">&quot;main.c&quot;</span></span><br><span class="line">            ;</span><br><span class="line"><span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line">i = i;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><p> 其中 assert(0)被展开成</p> <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">((<span class="type">void</span>) <span class="keyword">sizeof</span> ((<span class="number">1</span> &lt; <span class="number">0</span>) ? <span class="number">1</span> : <span class="number">0</span>),  __extension__ (&#123; </span><br><span class="line">    <span class="keyword">if</span> (<span class="number">1</span> &lt; <span class="number">0</span>) ; </span><br><span class="line">    <span class="keyword">else</span> __assert_fail(<span class="string">&quot;0&quot;</span>, <span class="string">&quot;main.c&quot;</span>, <span class="number">4</span>, __extension__ __PRETTY_FUNCTION__); </span><br><span class="line">    &#125;))</span><br></pre></td></tr></table></figure><p> 其中<code>((void) sizeof ((1 &lt; 0) ? 1 : 0), __extension__ (&#123; ... &#125;))</code> 是一个逗号表达式 </p><p> 其中包含一个sizeof 运算符和一个匿名模块</p><p> 其中核心的是__assert_fail函数</p></li><li><p><code>__assert_fail</code>的实现</p><p> 不同版本的glibc中的__assert_fail实现不同</p> <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">void</span><br><span class="line">__assert_fail (const char *assertion, const char *file, unsigned int line,</span><br><span class="line">        const char *function)</span><br><span class="line">&#123;</span><br><span class="line">#ifdef FATAL_PREPARE</span><br><span class="line">FATAL_PREPARE;</span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">/* Print the message.  */</span><br><span class="line">(void) fprintf (stderr, _(&quot;%s%s%s:%u: %s%sAssertion `%s&#x27; failed.\n&quot;),</span><br><span class="line">        __assert_program_name ? __assert_program_name : &quot;&quot;,</span><br><span class="line">        __assert_program_name ? &quot;: &quot; : &quot;&quot;,</span><br><span class="line">        file, line,</span><br><span class="line">        function ? function : &quot;&quot;, function ? &quot;: &quot; : &quot;&quot;,</span><br><span class="line">        assertion);</span><br><span class="line">(void) fflush (stderr);</span><br><span class="line"></span><br><span class="line">abort ();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p> 最终 调用了abort() 让程序退出</p></li></ol><h2 id="四、如何关闭ASSERT"><a href="#四、如何关闭ASSERT" class="headerlink" title="四、如何关闭ASSERT"></a>四、如何关闭ASSERT</h2><p>  assert.h中有如下代码<br>  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifdef</span>  NDEBUG</span></span><br><span class="line"></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> assert(expr)           (__ASSERT_VOID_CAST (0))</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* void assert_perror (int errnum);</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">If NDEBUG is defined, do nothing.  If not, and ERRNUM is not zero, print an</span></span><br><span class="line"><span class="comment">error message with the error text for ERRNUM and abort.</span></span><br><span class="line"><span class="comment">(This is a GNU extension.) */</span></span><br><span class="line"></span><br><span class="line"><span class="meta"># <span class="keyword">ifdef</span> __USE_GNU</span></span><br><span class="line"><span class="meta">#  <span class="keyword">define</span> assert_perror(errnum) (__ASSERT_VOID_CAST (0))</span></span><br><span class="line"><span class="meta"># <span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">else</span> <span class="comment">/* Not NDEBUG.  */</span></span></span><br><span class="line">  ....</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br></pre></td></tr></table></figure><br>对于gcc编译器而言，在编译时加上-DNDEBUG即可</p><h2 id="五、-void-sizeof-expr-1-0"><a href="#五、-void-sizeof-expr-1-0" class="headerlink" title="五、(void) sizeof ((expr) ? 1 : 0)"></a>五、(void) sizeof ((expr) ? 1 : 0)</h2><p>  这里使用的__extension__是一个GNU Libc的宏，用于指示编译器在处理代码时启用拓展特性。</p><p>  <code>__extension__</code>包裹一段代码或者表达式，以指示编译器在处理该代码时启用拓展特性。</p><p>  当使用<code>__extension__</code>包裹代码的时候，编译器不会报错，</p><p>  这是因为<code>__extension__</code>提示编译器在处理代码时启用拓展特性，使得编译器能够接受非标准的语法或者特性，并且不产生警告或者错误(除非编译器开启严格模式)</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">__extension__ int x = 10;  // 声明一个使用扩展特性的变量</span><br><span class="line"></span><br><span class="line">__extension__ (&#123;</span><br><span class="line">    // 使用扩展特性的代码块</span><br><span class="line">    // ...</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>由于实际的断言逻辑包裹在__extension__中，用户的入参也就是一个表达式，将被放在__extension__中</p><p>如果入参有任何错误，都将不会有编译时的报警和错误提示</p><p>所以需要设计一种方案，既能让编译器有机会提示报警，又不能实际执行表达式，</p><p>因为在<code>__extension</code>中有一次执行，不能执行两次</p><p>所以这里使用了sizeof运算符，他能接受一个表达式，查看其类型，并找出其展位符，并且无需执行该表达式</p><p>举例来说：</p><p>如果我们有一个函数<code>int blow_up_to_world();</code> </p><p>那么表达式<code>sizeof(blow_up_to_world)</code>会找到表达式结果的大小（本例中时int），当然这个函数并不会被执行</p><p>但是，如果编译器启用了 <code>-pedantic</code> 和 <code>-ansi</code>，那么<code>__extension</code>中该报错的代码还是会报错</p><p>接下来，用户的入参没有直接给 sizeof 计算，而是使用了三元。</p><p>这是因为如果入参是 可变长度的数组或者是函数名时，可能会产生不良影响</p><p>至于为什么使用逗号，因为开发者希望assert是一个表达式，而不是类似do while() 块或者其他东西，使用使用逗号，并且丢弃了 sizeof的结果</p><p>如果函数<code>void testfunc();</code> 执行<code>assert(testfunc())</code> 会有编译报错。</p><h2 id="六、参考链接"><a href="#六、参考链接" class="headerlink" title="六、参考链接"></a>六、参考链接</h2><p><a href="https://stackoverflow.com/questions/56314110/libc6-comma-operator-in-assert-macro-definition">https://stackoverflow.com/questions/56314110/libc6-comma-operator-in-assert-macro-definition</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;Assert 为什么能够让程序退出?&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>git使用笔记</title>
-    <link href="http://yoursite.com/2019/07/13/git/"/>
-    <id>http://yoursite.com/2019/07/13/git/</id>
+    <link href="https://devinor.github.io/2019/07/13/git/"/>
+    <id>https://devinor.github.io/2019/07/13/git/</id>
     <published>2019-07-13T08:50:25.000Z</published>
     <updated>2023-06-02T16:37:21.818Z</updated>
     
@@ -35,8 +52,8 @@
   
   <entry>
     <title>key_interrupt</title>
-    <link href="http://yoursite.com/2019/03/08/key-interrupt/"/>
-    <id>http://yoursite.com/2019/03/08/key-interrupt/</id>
+    <link href="https://devinor.github.io/2019/03/08/key-interrupt/"/>
+    <id>https://devinor.github.io/2019/03/08/key-interrupt/</id>
     <published>2019-03-08T08:04:16.000Z</published>
     <updated>2023-06-02T16:49:43.046Z</updated>
     
@@ -52,8 +69,8 @@
   
   <entry>
     <title>i2c_mpu6050</title>
-    <link href="http://yoursite.com/2019/03/07/i2c-mpu6050/"/>
-    <id>http://yoursite.com/2019/03/07/i2c-mpu6050/</id>
+    <link href="https://devinor.github.io/2019/03/07/i2c-mpu6050/"/>
+    <id>https://devinor.github.io/2019/03/07/i2c-mpu6050/</id>
     <published>2019-03-07T13:27:50.000Z</published>
     <updated>2023-06-02T16:31:12.796Z</updated>
     
@@ -69,8 +86,8 @@
   
   <entry>
     <title>Exynos-4412-PWM-platform_driver</title>
-    <link href="http://yoursite.com/2019/03/05/Exynos-4412-PWM-platform-driver/"/>
-    <id>http://yoursite.com/2019/03/05/Exynos-4412-PWM-platform-driver/</id>
+    <link href="https://devinor.github.io/2019/03/05/Exynos-4412-PWM-platform-driver/"/>
+    <id>https://devinor.github.io/2019/03/05/Exynos-4412-PWM-platform-driver/</id>
     <published>2019-03-05T14:19:31.000Z</published>
     <updated>2023-06-02T16:39:04.716Z</updated>
     
@@ -86,8 +103,8 @@
   
   <entry>
     <title>虚拟内存技术</title>
-    <link href="http://yoursite.com/2019/02/26/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E6%8A%80%E6%9C%AF/"/>
-    <id>http://yoursite.com/2019/02/26/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E6%8A%80%E6%9C%AF/</id>
+    <link href="https://devinor.github.io/2019/02/26/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E6%8A%80%E6%9C%AF/"/>
+    <id>https://devinor.github.io/2019/02/26/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E6%8A%80%E6%9C%AF/</id>
     <published>2019-02-26T02:49:21.000Z</published>
     <updated>2023-06-02T16:56:03.629Z</updated>
     
@@ -99,14 +116,14 @@
     
     
     
-    <category term="linux virtual memory" scheme="http://yoursite.com/tags/linux-virtual-memory/"/>
+    <category term="linux virtual memory" scheme="https://devinor.github.io/tags/linux-virtual-memory/"/>
     
   </entry>
   
   <entry>
     <title>centos系统文件</title>
-    <link href="http://yoursite.com/2018/11/21/%E7%B3%BB%E7%BB%9F%E6%96%87%E4%BB%B6/"/>
-    <id>http://yoursite.com/2018/11/21/%E7%B3%BB%E7%BB%9F%E6%96%87%E4%BB%B6/</id>
+    <link href="https://devinor.github.io/2018/11/21/%E7%B3%BB%E7%BB%9F%E6%96%87%E4%BB%B6/"/>
+    <id>https://devinor.github.io/2018/11/21/%E7%B3%BB%E7%BB%9F%E6%96%87%E4%BB%B6/</id>
     <published>2018-11-21T15:24:11.000Z</published>
     <updated>2023-06-02T16:43:17.387Z</updated>
     
@@ -122,8 +139,8 @@
   
   <entry>
     <title>ros系统catkin文件</title>
-    <link href="http://yoursite.com/2018/11/07/ros%E7%B3%BB%E7%BB%9Fcatkin%E6%96%87%E4%BB%B6/"/>
-    <id>http://yoursite.com/2018/11/07/ros%E7%B3%BB%E7%BB%9Fcatkin%E6%96%87%E4%BB%B6/</id>
+    <link href="https://devinor.github.io/2018/11/07/ros%E7%B3%BB%E7%BB%9Fcatkin%E6%96%87%E4%BB%B6/"/>
+    <id>https://devinor.github.io/2018/11/07/ros%E7%B3%BB%E7%BB%9Fcatkin%E6%96%87%E4%BB%B6/</id>
     <published>2018-11-07T05:02:23.000Z</published>
     <updated>2023-06-02T16:52:46.138Z</updated>
     
@@ -134,17 +151,17 @@
     
     
     
-    <category term="ROS" scheme="http://yoursite.com/categories/ROS/"/>
+    <category term="ROS" scheme="https://devinor.github.io/categories/ROS/"/>
     
     
-    <category term="ROS" scheme="http://yoursite.com/tags/ROS/"/>
+    <category term="ROS" scheme="https://devinor.github.io/tags/ROS/"/>
     
   </entry>
   
   <entry>
     <title>网络通信协议(3)</title>
-    <link href="http://yoursite.com/2018/11/07/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE3/"/>
-    <id>http://yoursite.com/2018/11/07/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE3/</id>
+    <link href="https://devinor.github.io/2018/11/07/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE3/"/>
+    <id>https://devinor.github.io/2018/11/07/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE3/</id>
     <published>2018-11-07T04:21:57.000Z</published>
     <updated>2023-06-02T16:52:09.147Z</updated>
     
@@ -155,17 +172,17 @@
     
     
     
-    <category term="网络通信协议" scheme="http://yoursite.com/categories/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/"/>
+    <category term="网络通信协议" scheme="https://devinor.github.io/categories/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/"/>
     
     
-    <category term="网络通信协议" scheme="http://yoursite.com/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/"/>
+    <category term="网络通信协议" scheme="https://devinor.github.io/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/"/>
     
   </entry>
   
   <entry>
     <title>网络通信(2)</title>
-    <link href="http://yoursite.com/2018/11/07/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A12/"/>
-    <id>http://yoursite.com/2018/11/07/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A12/</id>
+    <link href="https://devinor.github.io/2018/11/07/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A12/"/>
+    <id>https://devinor.github.io/2018/11/07/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A12/</id>
     <published>2018-11-06T16:40:37.000Z</published>
     <updated>2023-06-02T16:52:32.841Z</updated>
     
@@ -176,17 +193,17 @@
     
     
     
-    <category term="网络通信协议" scheme="http://yoursite.com/categories/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/"/>
+    <category term="网络通信协议" scheme="https://devinor.github.io/categories/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/"/>
     
     
-    <category term="网络通信协议" scheme="http://yoursite.com/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/"/>
+    <category term="网络通信协议" scheme="https://devinor.github.io/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/"/>
     
   </entry>
   
   <entry>
     <title>在Linux终端中写文件</title>
-    <link href="http://yoursite.com/2018/10/26/linux%E5%85%A5%E9%97%A8%E6%93%8D%E4%BD%9C2/"/>
-    <id>http://yoursite.com/2018/10/26/linux%E5%85%A5%E9%97%A8%E6%93%8D%E4%BD%9C2/</id>
+    <link href="https://devinor.github.io/2018/10/26/linux%E5%85%A5%E9%97%A8%E6%93%8D%E4%BD%9C2/"/>
+    <id>https://devinor.github.io/2018/10/26/linux%E5%85%A5%E9%97%A8%E6%93%8D%E4%BD%9C2/</id>
     <published>2018-10-26T04:55:01.000Z</published>
     <updated>2023-06-02T16:53:06.736Z</updated>
     
@@ -197,17 +214,17 @@
     
     
     
-    <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
+    <category term="Linux" scheme="https://devinor.github.io/categories/Linux/"/>
     
     
-    <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
+    <category term="Linux" scheme="https://devinor.github.io/tags/Linux/"/>
     
   </entry>
   
   <entry>
     <title>网络通讯协议(1)</title>
-    <link href="http://yoursite.com/2018/10/25/TCP-IP-part1/"/>
-    <id>http://yoursite.com/2018/10/25/TCP-IP-part1/</id>
+    <link href="https://devinor.github.io/2018/10/25/TCP-IP-part1/"/>
+    <id>https://devinor.github.io/2018/10/25/TCP-IP-part1/</id>
     <published>2018-10-25T13:28:22.000Z</published>
     <updated>2023-06-02T16:53:28.337Z</updated>
     
@@ -218,17 +235,17 @@
     
     
     
-    <category term="网络通信协议" scheme="http://yoursite.com/categories/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/"/>
+    <category term="网络通信协议" scheme="https://devinor.github.io/categories/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/"/>
     
     
-    <category term="网络通信协议" scheme="http://yoursite.com/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/"/>
+    <category term="网络通信协议" scheme="https://devinor.github.io/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/"/>
     
   </entry>
   
   <entry>
     <title>CURRENT AND VOLTAGE</title>
-    <link href="http://yoursite.com/2018/10/15/Professional-English-1/"/>
-    <id>http://yoursite.com/2018/10/15/Professional-English-1/</id>
+    <link href="https://devinor.github.io/2018/10/15/Professional-English-1/"/>
+    <id>https://devinor.github.io/2018/10/15/Professional-English-1/</id>
     <published>2018-10-15T15:01:03.000Z</published>
     <updated>2023-06-02T16:53:49.061Z</updated>
     
@@ -239,17 +256,17 @@
     
     
     
-    <category term="English" scheme="http://yoursite.com/categories/English/"/>
+    <category term="English" scheme="https://devinor.github.io/categories/English/"/>
     
     
-    <category term="Electrical Professional English" scheme="http://yoursite.com/tags/Electrical-Professional-English/"/>
+    <category term="Electrical Professional English" scheme="https://devinor.github.io/tags/Electrical-Professional-English/"/>
     
   </entry>
   
   <entry>
     <title>linux C编程 一站式学习</title>
-    <link href="http://yoursite.com/2018/09/10/%E5%B5%8C%E5%85%A5%E5%BC%8FC/"/>
-    <id>http://yoursite.com/2018/09/10/%E5%B5%8C%E5%85%A5%E5%BC%8FC/</id>
+    <link href="https://devinor.github.io/2018/09/10/%E5%B5%8C%E5%85%A5%E5%BC%8FC/"/>
+    <id>https://devinor.github.io/2018/09/10/%E5%B5%8C%E5%85%A5%E5%BC%8FC/</id>
     <published>2018-09-10T10:53:20.000Z</published>
     <updated>2023-06-02T16:53:59.464Z</updated>
     
@@ -260,17 +277,17 @@
     
     
     
-    <category term="Linux C" scheme="http://yoursite.com/categories/Linux-C/"/>
+    <category term="Linux C" scheme="https://devinor.github.io/categories/Linux-C/"/>
     
     
-    <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
+    <category term="Linux" scheme="https://devinor.github.io/tags/Linux/"/>
     
   </entry>
   
   <entry>
     <title>linux入门操作</title>
-    <link href="http://yoursite.com/2018/06/25/linux%E5%85%A5%E9%97%A8%E6%93%8D%E4%BD%9C/"/>
-    <id>http://yoursite.com/2018/06/25/linux%E5%85%A5%E9%97%A8%E6%93%8D%E4%BD%9C/</id>
+    <link href="https://devinor.github.io/2018/06/25/linux%E5%85%A5%E9%97%A8%E6%93%8D%E4%BD%9C/"/>
+    <id>https://devinor.github.io/2018/06/25/linux%E5%85%A5%E9%97%A8%E6%93%8D%E4%BD%9C/</id>
     <published>2018-06-25T04:45:28.000Z</published>
     <updated>2023-06-02T16:54:11.355Z</updated>
     
@@ -281,17 +298,17 @@
     
     
     
-    <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
+    <category term="Linux" scheme="https://devinor.github.io/categories/Linux/"/>
     
     
-    <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
+    <category term="Linux" scheme="https://devinor.github.io/tags/Linux/"/>
     
   </entry>
   
   <entry>
     <title>无线充电</title>
-    <link href="http://yoursite.com/2018/05/14/%E6%97%A0%E7%BA%BF%E5%85%85%E7%94%B5/"/>
-    <id>http://yoursite.com/2018/05/14/%E6%97%A0%E7%BA%BF%E5%85%85%E7%94%B5/</id>
+    <link href="https://devinor.github.io/2018/05/14/%E6%97%A0%E7%BA%BF%E5%85%85%E7%94%B5/"/>
+    <id>https://devinor.github.io/2018/05/14/%E6%97%A0%E7%BA%BF%E5%85%85%E7%94%B5/</id>
     <published>2018-05-14T02:46:50.000Z</published>
     <updated>2023-06-02T16:54:25.720Z</updated>
     
@@ -302,33 +319,33 @@
     
     
     
-    <category term="电力电子" scheme="http://yoursite.com/categories/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/"/>
+    <category term="电力电子" scheme="https://devinor.github.io/categories/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/"/>
     
     
-    <category term="无线充电" scheme="http://yoursite.com/tags/%E6%97%A0%E7%BA%BF%E5%85%85%E7%94%B5/"/>
+    <category term="无线充电" scheme="https://devinor.github.io/tags/%E6%97%A0%E7%BA%BF%E5%85%85%E7%94%B5/"/>
     
   </entry>
   
   <entry>
     <title>INTRO</title>
-    <link href="http://yoursite.com/2018/05/13/INTRO/"/>
-    <id>http://yoursite.com/2018/05/13/INTRO/</id>
+    <link href="https://devinor.github.io/2018/05/13/INTRO/"/>
+    <id>https://devinor.github.io/2018/05/13/INTRO/</id>
     <published>2018-05-13T10:48:24.000Z</published>
-    <updated>2023-06-02T16:54:29.599Z</updated>
+    <updated>2023-06-04T03:19:06.390Z</updated>
     
-    <content type="html"><![CDATA[<p>&amp;nbsp; 业精于勤，荒于嬉；行成于思，毁于随</p>]]></content>
+    <content type="html"><![CDATA[<p>业精于勤，荒于嬉；行成于思，毁于随</p>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;&amp;amp;nbsp; 业精于勤，荒于嬉；行成于思，毁于随&lt;/p&gt;
+    <summary type="html">&lt;p&gt;业精于勤，荒于嬉；行成于思，毁于随&lt;/p&gt;
 </summary>
       
     
     
     
     
-    <category term="INTRO" scheme="http://yoursite.com/tags/INTRO/"/>
+    <category term="INTRO" scheme="https://devinor.github.io/tags/INTRO/"/>
     
   </entry>
   
